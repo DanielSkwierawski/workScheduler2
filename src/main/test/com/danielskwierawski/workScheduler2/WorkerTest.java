@@ -30,7 +30,7 @@ public class WorkerTest {
         sut = new Worker("Zbigniew", "Kowalski");
 
         LocalDate firstDay = LocalDate.of(2017, 12, 1);
-        LocalDate secondDay = LocalDate.of(2017, 12, 1);
+        LocalDate secondDay = LocalDate.of(2017, 12, 2);
         LocalDate lastDay = LocalDate.of(2017, 12, 3);
 
         Map<LocalDate, Day> expected = new HashMap<>();
@@ -42,6 +42,27 @@ public class WorkerTest {
         Map<LocalDate, Day> result = sut.returnWorkSchedule();
         // then
         assertThat(result).size().isEqualTo(3);
+        assertThat(result).containsAllEntriesOf(expected);
+    }
+
+    @Test
+    public void dropWorkSchedule() throws Exception {
+        // given
+        sut = new Worker("Zbigniew", "Kowalski");
+
+        LocalDate firstDay = LocalDate.of(2017, 12, 1);
+        LocalDate secondDay = LocalDate.of(2017, 12, 2);
+        LocalDate lastDay = LocalDate.of(2017, 12, 3);
+
+        Map<LocalDate, Day> expected = new HashMap<>();
+        expected.put(lastDay, new Day(lastDay));
+
+        sut.initializeWorkSchedule(firstDay, lastDay);
+        // when
+        sut.dropWorkSchedule(firstDay, secondDay);
+        Map<LocalDate, Day> result = sut.returnWorkSchedule();
+        // then
+        assertThat(result).size().isEqualTo(1);
         assertThat(result).containsAllEntriesOf(expected);
     }
 }

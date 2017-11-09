@@ -10,13 +10,13 @@ import static com.danielskwierawski.workScheduler2.Plan.defaultWorkTime;
 public class Day {
     @Getter
     @Setter
+    private LocalDate localDate;
+    @Getter
+    @Setter
     private Integer start;
     @Getter
     @Setter
     private Integer end;
-    @Getter
-    @Setter
-    private LocalDate localDate;
 
     public Day(LocalDate localDate) {
         this.localDate = localDate;
