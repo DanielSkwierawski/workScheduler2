@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-import static com.danielskwierawski.workScheduler2.Plan.defaultWorkTime;
+import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
+import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
+import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
 
 public class Day {
     @Getter
@@ -23,12 +25,16 @@ public class Day {
     }
 
     public Day(LocalDate localDate, Integer start) {
-        this.localDate = localDate;
-        this.start = start;
-        this.end = start + defaultWorkTime;
+        this(localDate, start, start + DEFAULT_WORKING_TIME);
     }
 
     public Day(LocalDate localDate, Integer start, Integer end) {
+        if (start < MIN_ALLOWED_START_WORKING) {
+            throw new IllegalArgumentException("Day cannot start before MIN_ALLOWED_START_WORKING(" + MIN_ALLOWED_START_WORKING + ")");
+        }
+        if (end > MAX_ALLOWED_END_WORKING) {
+            throw new IllegalArgumentException("Day cannot end after MAX_ALLOWED_END_WORKING(" + MAX_ALLOWED_END_WORKING + ")");
+        }
         this.localDate = localDate;
         this.start = start;
         this.end = end;
