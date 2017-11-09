@@ -41,4 +41,24 @@ public class Day {
             return false;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Day day = (Day) o;
+
+        if (start != null ? !start.equals(day.start) : day.start != null) return false;
+        if (end != null ? !end.equals(day.end) : day.end != null) return false;
+        return localDate.equals(day.localDate);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = start != null ? start.hashCode() : 0;
+        result = 31 * result + (end != null ? end.hashCode() : 0);
+        result = 31 * result + localDate.hashCode();
+        return result;
+    }
 }

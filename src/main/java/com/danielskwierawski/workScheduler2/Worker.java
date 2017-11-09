@@ -17,4 +17,14 @@ public class Worker {
         this.name = name;
         this.surname = surname;
     }
+
+    public void initializeWorkSchedule(LocalDate start, LocalDate end) {
+        for (LocalDate current = start; !current.isAfter(end); current = current.plusDays(1)) {
+            dayMap.put(current, new Day(current));
+        }
+    }
+
+    public Map<LocalDate, Day> returnWorkSchedule() {
+        return dayMap;
+    }
 }
