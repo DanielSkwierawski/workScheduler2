@@ -11,6 +11,7 @@ public class Worker {
     private String name;
     @Getter
     private String surname;
+    @Getter
     private Map<LocalDate, Day> dayMap = new HashMap<LocalDate, Day>();
 
     public Worker(String name, String surname) {
