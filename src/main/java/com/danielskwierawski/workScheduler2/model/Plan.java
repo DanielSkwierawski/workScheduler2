@@ -1,4 +1,4 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package com.danielskwierawski.workScheduler2;
 
+import com.danielskwierawski.workScheduler2.model.Plan;
+import com.danielskwierawski.workScheduler2.model.Worker;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;

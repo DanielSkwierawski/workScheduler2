@@ -1,14 +1,12 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
-import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
-import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
-import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
+import static com.danielskwierawski.workScheduler2.model.Plan.DEFAULT_WORKING_TIME;
+import static com.danielskwierawski.workScheduler2.model.Plan.MAX_ALLOWED_END_WORKING;
+import static com.danielskwierawski.workScheduler2.model.Plan.MIN_ALLOWED_START_WORKING;
 
 @EqualsAndHashCode
 public class Day {
