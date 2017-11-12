@@ -1,5 +1,7 @@
 package com.danielskwierawski.workScheduler2;
 
+import com.danielskwierawski.workScheduler2.Day;
+import com.danielskwierawski.workScheduler2.Worker;
 import org.junit.Test;
 
 import java.time.LocalDate;

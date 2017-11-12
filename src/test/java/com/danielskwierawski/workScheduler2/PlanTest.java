@@ -1,5 +1,8 @@
 package com.danielskwierawski.workScheduler2;
 
+import com.danielskwierawski.workScheduler2.Day;
+import com.danielskwierawski.workScheduler2.Plan;
+import com.danielskwierawski.workScheduler2.Worker;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -9,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 public class PlanTest {
 
