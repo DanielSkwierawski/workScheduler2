@@ -14,30 +14,25 @@ import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKIN
 public class Day {
     @Getter
     @Setter
-    private LocalDate localDate;
-    @Getter
-    @Setter
     private Integer start;
     @Getter
     @Setter
     private Integer end;
 
-    public Day(LocalDate localDate) {
-        this.localDate = localDate;
+    public Day() {
     }
 
-    public Day(LocalDate localDate, Integer start) {
-        this(localDate, start, start + DEFAULT_WORKING_TIME);
+    public Day(Integer start) {
+        this(start, start + DEFAULT_WORKING_TIME);
     }
 
-    public Day(LocalDate localDate, Integer start, Integer end) {
+    public Day(Integer start, Integer end) {
         if (start < MIN_ALLOWED_START_WORKING) {
             throw new IllegalArgumentException("Day cannot start before MIN_ALLOWED_START_WORKING(" + MIN_ALLOWED_START_WORKING + ")");
         }
         if (end > MAX_ALLOWED_END_WORKING) {
             throw new IllegalArgumentException("Day cannot end after MAX_ALLOWED_END_WORKING(" + MAX_ALLOWED_END_WORKING + ")");
         }
-        this.localDate = localDate;
         this.start = start;
         this.end = end;
     }

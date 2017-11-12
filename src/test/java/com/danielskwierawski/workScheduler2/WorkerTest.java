@@ -36,9 +36,9 @@ public class WorkerTest {
         LocalDate lastDay = LocalDate.of(2017, 12, 3);
 
         Map<LocalDate, Day> expected = new HashMap<>();
-        expected.put(firstDay, new Day(firstDay));
-        expected.put(secondDay, new Day(secondDay));
-        expected.put(lastDay, new Day(lastDay));
+        expected.put(firstDay, new Day());
+        expected.put(secondDay, new Day());
+        expected.put(lastDay, new Day());
         // when
         sut.initializeWorkSchedule(firstDay, lastDay);
         Map<LocalDate, Day> result = sut.returnWorkSchedule();
@@ -57,7 +57,7 @@ public class WorkerTest {
         LocalDate lastDay = LocalDate.of(2017, 12, 3);
 
         Map<LocalDate, Day> expected = new HashMap<>();
-        expected.put(lastDay, new Day(lastDay));
+        expected.put(lastDay, new Day());
 
         sut.initializeWorkSchedule(firstDay, lastDay);
         // when

@@ -18,9 +18,8 @@ public class DayTest {
     @Test
     public void createDayOff() throws Exception {
         // given
-        LocalDate localDate = LocalDate.of(2017,1,1);
         // when
-        sut = new Day(localDate);
+        sut = new Day();
         // then
         assertThat(sut.getStart()).isNull();
         assertThat(sut.getEnd()).isNull();
@@ -30,11 +29,10 @@ public class DayTest {
     @Test
     public void createStandardWorkingDay() throws Exception {
         // given
-        LocalDate localDate = LocalDate.of(2017,1,1);
         int startDayAt = 6;
         int endDayAt = startDayAt + DEFAULT_WORKING_TIME;
         // when
-        sut = new Day(localDate, startDayAt);
+        sut = new Day(startDayAt);
         // then
         assertThat(sut.getStart()).isEqualTo(startDayAt);
         assertThat(sut.getEnd()).isEqualTo(endDayAt);
@@ -44,11 +42,10 @@ public class DayTest {
     @Test
     public void createStandardWorkingDay2() throws Exception {
         // given
-        LocalDate localDate = LocalDate.of(2017,1,1);
         int startDayAt = 6;
         int endDayAt = startDayAt + DEFAULT_WORKING_TIME;
         // when
-        sut = new Day(localDate, startDayAt, endDayAt);
+        sut = new Day(startDayAt, endDayAt);
         // then
         assertThat(sut.getStart()).isEqualTo(startDayAt);
         assertThat(sut.getEnd()).isEqualTo(endDayAt);
@@ -58,11 +55,10 @@ public class DayTest {
     @Test
     public void createUnusualWorkingDay() throws Exception {
         // given
-        LocalDate localDate = LocalDate.of(2017,1,1);
         int startDayAt = 6;
         int endDayAt = startDayAt + 7;
         // when
-        sut = new Day(localDate, startDayAt, endDayAt);
+        sut = new Day(startDayAt, endDayAt);
         // then
         assertThat(sut.getStart()).isEqualTo(startDayAt);
         assertThat(sut.getEnd()).isEqualTo(endDayAt);
@@ -72,11 +68,10 @@ public class DayTest {
     @Test
     public void createIncorrectWorkingDay_TooEarly() throws Exception {
         // given
-        LocalDate localDate = LocalDate.of(2017,1,1);
         int startDayAt = MIN_ALLOWED_START_WORKING -1;
         // when
         try {
-            sut = new Day(localDate, startDayAt);
+            sut = new Day(startDayAt);
             fail("Should throw an exception if startDay is before MIN_ALLOWED_START_WORKING");
         } catch (Exception e) {
             assertThat(e)
@@ -89,12 +84,11 @@ public class DayTest {
     @Test
     public void createIncorrectWorkingDay_TooLate() throws Exception {
         // given
-        LocalDate localDate = LocalDate.of(2017,1,1);
         int startDayAt = 6;
         int endDayAt = MAX_ALLOWED_END_WORKING + 1;
         // when
         try {
-            sut = new Day(localDate, startDayAt, endDayAt);
+            sut = new Day(startDayAt, endDayAt);
             fail("Should throw an exception if endDay is after MAX_ALLOWED_END_WORKING");
         } catch (Exception e) {
             assertThat(e)
