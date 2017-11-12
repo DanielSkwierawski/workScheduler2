@@ -1,5 +1,6 @@
 package com.danielskwierawski.workScheduler2;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
 import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
 import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
 
+@EqualsAndHashCode
 public class Day {
     @Getter
     @Setter
@@ -46,25 +48,5 @@ public class Day {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Day day = (Day) o;
-
-        if (start != null ? !start.equals(day.start) : day.start != null) return false;
-        if (end != null ? !end.equals(day.end) : day.end != null) return false;
-        return localDate.equals(day.localDate);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = start != null ? start.hashCode() : 0;
-        result = 31 * result + (end != null ? end.hashCode() : 0);
-        result = 31 * result + localDate.hashCode();
-        return result;
     }
 }
