@@ -97,4 +97,31 @@ public class DayTest {
         }
         assertThat(sut).isNull();
     }
+
+    @Test
+    public void checkUp1() throws Exception {
+        // given
+        Day day1 = new Day();
+        Day day2 = new Day(6);
+        Day day3 = new Day(6,12);
+        Day day4 = new Day(14);
+        Day day5 = new Day(16,22);
+        // when
+        day1.up1();
+        day2.up1();
+        day3.up1();
+        boolean boolean4 = day4.up1();
+        boolean boolean5 = day5.up1();
+        // then
+        assertThat(day1.isOff()).isFalse();
+        assertThat(day1.getStart()).isEqualTo(6);
+        assertThat(day1.getEnd()).isEqualTo(14);
+        assertThat(day2.getStart()).isEqualTo(7);
+        assertThat(day2.getEnd()).isEqualTo(15);
+        assertThat(day3.getStart()).isEqualTo(7);
+        assertThat(day3.getEnd()).isEqualTo(13);
+        assertThat(boolean4).isFalse();
+        assertThat(boolean5).isFalse();
+
+    }
 }

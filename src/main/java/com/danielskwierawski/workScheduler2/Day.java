@@ -44,4 +44,18 @@ public class Day {
             return false;
         }
     }
+
+    public boolean up1() {
+        if (end != null && end == MAX_ALLOWED_END_WORKING) {
+            return false;
+        }
+        if (start == null) {
+            start = MIN_ALLOWED_START_WORKING;
+            end = start + DEFAULT_WORKING_TIME;
+            return true;
+        }
+        start++;
+        end++;
+        return true;
+    }
 }
