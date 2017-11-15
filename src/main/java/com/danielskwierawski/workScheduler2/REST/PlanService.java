@@ -4,10 +4,7 @@ import com.danielskwierawski.workScheduler2.model.Plan;
 import com.danielskwierawski.workScheduler2.model.Worker;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -56,6 +53,20 @@ public class PlanService {
         }
 
         return Response.ok(workerList).build();
+    }
+
+    @GET
+    @Path("/worker")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getWorker(@QueryParam("name") String name, @QueryParam("surname") String surname) {
+        List<Worker> workerList = plan.getAllWorkers();
+
+        for (Worker worker : workerList) {
+            if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
+                return Response.ok(worker).build();
+            }
+        }
+        return Response.noContent().build();
     }
 
 }
