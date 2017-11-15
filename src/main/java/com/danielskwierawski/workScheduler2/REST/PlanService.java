@@ -1,5 +1,6 @@
 package com.danielskwierawski.workScheduler2.REST;
 
+import com.danielskwierawski.workScheduler2.model.Day;
 import com.danielskwierawski.workScheduler2.model.Plan;
 import com.danielskwierawski.workScheduler2.model.Worker;
 
@@ -7,6 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 
 @Path("/")
@@ -26,7 +28,7 @@ public class PlanService {
     @Path("/workers")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllWorkers() {
-        /*LocalDate start = LocalDate.of(2017, 1, 1);
+        LocalDate start = LocalDate.of(2017, 1, 1);
         LocalDate middle = LocalDate.of(2017, 1, 2);
         LocalDate end = LocalDate.of(2017, 1, 3);
         Worker worker1 = new Worker("Daniel", "Kowalski");
@@ -44,7 +46,7 @@ public class PlanService {
         worker3.getDayMap().get(middle).setEnd(22);
         plan.addWorker(worker1);
         plan.addWorker(worker2);
-        plan.addWorker(worker3);*/
+        plan.addWorker(worker3);
 
         List<Worker> workerList = plan.getAllWorkers();
 
@@ -68,5 +70,29 @@ public class PlanService {
         }
         return Response.noContent().build();
     }
+
+    @POST
+    @Path("/worker")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addWorker(Worker worker) {
+
+        Worker newWorker = new Worker(worker.getName(), worker.getSurname());
+
+        plan.addWorker(newWorker);
+
+        return getAllWorkers();
+    }
+
+    @POST
+    @Path("/day")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addDay(Day day) {
+        Day newDay = day;
+
+        return Response.ok(newDay).build();
+    }
+
 
 }
