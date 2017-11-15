@@ -1,11 +1,14 @@
 package com.danielskwierawski.workScheduler2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+@JsonDeserialize(using = ProgramDeserializer.class )
 public class Worker {
     @Getter
     private String name;
