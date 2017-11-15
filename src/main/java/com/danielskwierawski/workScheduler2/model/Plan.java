@@ -1,9 +1,11 @@
 package com.danielskwierawski.workScheduler2.model;
 
+import javax.ejb.Singleton;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 public class Plan {
     private List<Worker> workerList = new ArrayList<>();
     public static final int DEFAULT_WORKING_TIME = 8;
