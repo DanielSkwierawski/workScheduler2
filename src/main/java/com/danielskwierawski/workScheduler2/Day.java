@@ -3,6 +3,7 @@ package com.danielskwierawski.workScheduler2;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -11,6 +12,7 @@ import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
 import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
 
 @EqualsAndHashCode
+@ToString
 public class Day {
     @Getter
     @Setter
