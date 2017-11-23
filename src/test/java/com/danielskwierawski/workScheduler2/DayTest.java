@@ -1,6 +1,7 @@
 package com.danielskwierawski.workScheduler2;
 
 import com.danielskwierawski.workScheduler2.Day;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.Test;
 
@@ -160,5 +161,17 @@ public class DayTest {
         assertThat(standardWorkingDay).isEqualTo(expectedStandardWorkingDay);
         assertThat(standardWorkingDay.getStart()).isEqualTo(6);
         assertThat(standardWorkingDay.getEnd()).isEqualTo(14);
+    }
+
+    @Test
+    public void checkDayToJsonByJackson() throws Exception {
+        // given
+        Day dayOff = new Day();
+        String expectedJsonDayOff = "{}";
+        ObjectMapper mapper = new ObjectMapper();
+        // when
+        String jsonDayOff = mapper.writeValueAsString(dayOff);
+        // then
+        assertThat(jsonDayOff).isEqualTo(expectedJsonDayOff);
     }
 }
