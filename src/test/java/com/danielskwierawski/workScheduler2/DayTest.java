@@ -1,6 +1,7 @@
 package com.danielskwierawski.workScheduler2;
 
 import com.danielskwierawski.workScheduler2.Day;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -167,8 +168,9 @@ public class DayTest {
     public void checkDayToJsonByJackson() throws Exception {
         // given
         Day dayOff = new Day();
-        String expectedJsonDayOff = "{}";
+        String expectedJsonDayOff = "{\"start\":null,\"end\":null}";
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(MapperFeature.AUTO_DETECT_IS_GETTERS, false);
         // when
         String jsonDayOff = mapper.writeValueAsString(dayOff);
         // then
