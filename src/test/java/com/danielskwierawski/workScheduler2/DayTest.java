@@ -173,7 +173,6 @@ public class DayTest {
         Day standardWorkingDay = new Day(6);
         String expectedJsonStandardWorkingDay = "{\"start\":6,\"end\":14}";
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(MapperFeature.AUTO_DETECT_IS_GETTERS, false);
         // when
         String jsonDayOff = mapper.writeValueAsString(dayOff);
         String jsonStandardWorkingDay = mapper.writeValueAsString(standardWorkingDay);

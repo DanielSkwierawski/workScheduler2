@@ -1,5 +1,6 @@
 package com.danielskwierawski.workScheduler2;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,6 +40,7 @@ public class Day {
         this.end = end;
     }
 
+    @JsonIgnore
     public boolean isOff() {
         if (this.start == null) {
             return true;
