@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ToString
+@EqualsAndHashCode
 public class Experiment {
 
     @Getter
@@ -32,7 +33,7 @@ public class Experiment {
     @Getter
     @Setter
     @JsonSerialize(using = MapSerializer.class)
-//    @JsonDeserialize(using = ArrayToMapDeserializer.class, keyAs = Foo.class, contentAs = Bar.class)
+    @JsonDeserialize(using = MapDeserializer.class, keyAs = LocalDate.class, contentAs = Day.class)
     private Map<LocalDate, Day> dayMap;
 
     public void setParameters() {
