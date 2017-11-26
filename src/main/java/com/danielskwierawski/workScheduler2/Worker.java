@@ -1,17 +1,21 @@
 package com.danielskwierawski.workScheduler2;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+@ToString
 public class Worker {
     @Getter
     private String name;
     @Getter
     private String surname;
     @Getter
+    @JsonSerialize(using = MapSerializer.class)
     private Map<LocalDate, Day> dayMap = new HashMap<LocalDate, Day>();
 
     public Worker(String name, String surname) {
