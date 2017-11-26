@@ -14,12 +14,14 @@ public class MapSerializer extends JsonSerializer<Map<LocalDate, Day>> {
 
     @Override
     public void serialize(Map<LocalDate, Day> value, JsonGenerator gen, SerializerProvider sp) throws IOException, JsonProcessingException {
-        gen.writeStartObject();
+        gen.writeStartArray();
         for (Map.Entry<LocalDate, Day> entry : value.entrySet()) {
-            gen.writeFieldName(entry.getKey().format(DateTimeFormatter.ISO_LOCAL_DATE));
+            gen.writeStartArray();
+            gen.writeObject(entry.getKey().format(DateTimeFormatter.ISO_LOCAL_DATE));
             gen.writeObject(entry.getValue());
+            gen.writeEndArray();
         }
-        gen.writeEndObject();
+        gen.writeEndArray();
     }
 
 }
