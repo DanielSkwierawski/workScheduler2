@@ -104,4 +104,63 @@ public class WorkerTest {
         assertThat(jsonWorkerWorking).isEqualTo(expectedJsonWorkerWorking);
 
     }
+
+    @Test
+    public void checkJsonToWorkerByJackson() throws Exception {
+        // given
+        LocalDate start = LocalDate.of(2017,1,1);
+        LocalDate middle = LocalDate.of(2017,1,2);
+        LocalDate end = LocalDate.of(2017,1,3);
+        Day dayOff = new Day();
+
+        String jsonWorkerEmpty = "{\"name\":\"Artur\",\"surname\":\"Kowalski\",\"dayMap\":[]}";
+        Worker expectedWorkerEmpty = new Worker("Artur", "Kowalski");
+
+        String jsonWorkerInitialized = "{\"name\":\"Maciej\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]}";
+        Worker expectedWorkerInitialized = new Worker("Maciej", "Wisniewski");
+        expectedWorkerInitialized.initializeWorkSchedule(start, end);
+
+        String jsonWorkerWorking = "{\"name\":\"Michal\",\"surname\":\"Pracujacy\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
+        Worker expectedWorkerWorking = new Worker("Michal", "Pracujacy");
+        expectedWorkerWorking.initializeWorkSchedule(start, end);
+        expectedWorkerWorking.getDayMap().get(start).setStart(6);
+        expectedWorkerWorking.getDayMap().get(start).setEnd(14);
+        expectedWorkerWorking.getDayMap().get(middle).setStart(14);
+        expectedWorkerWorking.getDayMap().get(middle).setEnd(22);
+        expectedWorkerWorking.getDayMap().get(end).setStart(14);
+        expectedWorkerWorking.getDayMap().get(end).setEnd(22);
+
+        ObjectMapper mapper = new ObjectMapper();
+        // when
+        Worker workerEmpty = mapper.readValue(jsonWorkerEmpty, Worker.class);
+        Worker workerInitialized = mapper.readValue(jsonWorkerInitialized, Worker.class);
+        Worker workerWorking = mapper.readValue(jsonWorkerWorking, Worker.class);
+        // then
+        assertThat(workerEmpty).isEqualTo(expectedWorkerEmpty);
+        assertThat(workerEmpty.getName()).isEqualTo("Artur");
+        assertThat(workerEmpty.getSurname()).isEqualTo("Kowalski");
+        assertThat(workerEmpty.getDayMap()).isNotNull();
+        assertThat(workerEmpty.getDayMap()).isEmpty();//not null but empty
+
+        assertThat(workerInitialized).isEqualTo(expectedWorkerInitialized);
+        assertThat(workerInitialized.getName()).isEqualTo("Maciej");
+        assertThat(workerInitialized.getSurname()).isEqualTo("Wisniewski");
+        assertThat(workerInitialized.getDayMap()).isNotNull();
+        assertThat(workerInitialized.getDayMap()).isNotEmpty();
+        assertThat(workerInitialized.getDayMap().get(start)).isEqualTo(dayOff);
+        assertThat(workerInitialized.getDayMap().get(middle)).isEqualTo(dayOff);
+        assertThat(workerInitialized.getDayMap().get(end)).isEqualTo(dayOff);
+
+        assertThat(workerWorking).isEqualTo(expectedWorkerWorking);
+        assertThat(workerWorking.getName()).isEqualTo("Michal");
+        assertThat(workerWorking.getSurname()).isEqualTo("Pracujacy");
+        assertThat(workerWorking.getDayMap()).isNotNull();
+        assertThat(workerWorking.getDayMap()).isNotEmpty();
+        assertThat(workerWorking.getDayMap().get(start).getStart()).isEqualTo(6);
+        assertThat(workerWorking.getDayMap().get(start).getEnd()).isEqualTo(14);
+        assertThat(workerWorking.getDayMap().get(middle).getStart()).isEqualTo(14);
+        assertThat(workerWorking.getDayMap().get(middle).getEnd()).isEqualTo(22);
+        assertThat(workerWorking.getDayMap().get(end).getStart()).isEqualTo(14);
+        assertThat(workerWorking.getDayMap().get(end).getEnd()).isEqualTo(22);
+    }
 }
