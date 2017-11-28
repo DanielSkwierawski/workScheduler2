@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
-import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
-import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
+import static com.danielskwierawski.workScheduler2.Plan.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
@@ -113,7 +111,7 @@ public class DayTest {
         // given
         Day sut = new Day(6);
         // when
-        sut.setDay(14,21);
+        sut.setDay(14, 21);
         // then
         assertThat(sut.getStart()).isEqualTo(14);
         assertThat(sut.getEnd()).isEqualTo(21);

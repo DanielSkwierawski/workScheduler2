@@ -6,9 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
-import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
-import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
+import static com.danielskwierawski.workScheduler2.Plan.*;
 
 @EqualsAndHashCode
 @ToString
