@@ -99,6 +99,28 @@ public class DayTest {
     }
 
     @Test
+    public void modifyWorkingHours() throws Exception {
+        // given
+        Day sut = new Day(6);
+        // when
+        sut.setDay(14);
+        // then
+        assertThat(sut.getStart()).isEqualTo(14);
+        assertThat(sut.getEnd()).isEqualTo(22);
+    }
+
+    @Test
+    public void modifyWorkingHours2() throws Exception {
+        // given
+        Day sut = new Day(6);
+        // when
+        sut.setDay(14,21);
+        // then
+        assertThat(sut.getStart()).isEqualTo(14);
+        assertThat(sut.getEnd()).isEqualTo(21);
+    }
+
+    @Test
     public void checkUp1() throws Exception {
         // given
         Day day1 = new Day();

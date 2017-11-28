@@ -20,6 +20,16 @@ public class Day {
     @Setter
     private Integer end;
 
+    public void setDay(Integer start) {
+        this.start = start;
+        this.end = start + DEFAULT_WORKING_TIME;
+    }
+
+    public void setDay(Integer start, Integer end) {
+        this.start = start;
+        this.end = end;
+    }
+
     public Day() {
     }
 
