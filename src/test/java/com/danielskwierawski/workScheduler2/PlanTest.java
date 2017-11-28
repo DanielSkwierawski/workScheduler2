@@ -58,7 +58,7 @@ public class PlanTest {
     }
 
     @Test
-    public void checkPlanToJsonByJackson() throws Exception {
+    public void checkPlanToJson() throws Exception {
         // given
         LocalDate start = LocalDate.of(2017, 1, 1);
         LocalDate middle = LocalDate.of(2017, 1, 2);
@@ -142,7 +142,7 @@ public class PlanTest {
     }
 
     @Test
-    public void checkJsonToPlanByJackson() throws Exception {
+    public void checkJsonToPlan() throws Exception {
         // given
         LocalDate start = LocalDate.of(2017, 1, 1);
         LocalDate middle = LocalDate.of(2017, 1, 2);

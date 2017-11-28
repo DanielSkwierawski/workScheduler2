@@ -68,7 +68,7 @@ public class WorkerTest {
     }
 
     @Test
-    public void checkWorkerToJsonByJackson() throws Exception {
+    public void checkWorkerToJson() throws Exception {
         // given
         LocalDate start = LocalDate.of(2017, 1, 1);
         LocalDate middle = LocalDate.of(2017, 1, 2);
@@ -102,7 +102,7 @@ public class WorkerTest {
     }
 
     @Test
-    public void checkJsonToWorkerByJackson() throws Exception {
+    public void checkJsonToWorker() throws Exception {
         // given
         LocalDate start = LocalDate.of(2017, 1, 1);
         LocalDate middle = LocalDate.of(2017, 1, 2);
