@@ -83,12 +83,10 @@ public class WorkerTest {
 
         Worker workerWorking = new Worker("Michal", "Pracujacy");
         workerWorking.initializeWorkSchedule(start, end);
-        workerWorking.getDayMap().get(start).setStart(6);
-        workerWorking.getDayMap().get(start).setEnd(14);
-        workerWorking.getDayMap().get(middle).setStart(14);
-        workerWorking.getDayMap().get(middle).setEnd(22);
-        workerWorking.getDayMap().get(end).setStart(14);
-        workerWorking.getDayMap().get(end).setEnd(22);
+        workerWorking.getDayMap().get(start).setDay(6);
+        workerWorking.getDayMap().get(middle).setDay(14);
+        workerWorking.getDayMap().get(end).setDay(14);
+
         String expectedJsonWorkerWorking = "{\"name\":\"Michal\",\"surname\":\"Pracujacy\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
 
         ObjectMapper mapper = new ObjectMapper();
@@ -121,12 +119,9 @@ public class WorkerTest {
         String jsonWorkerWorking = "{\"name\":\"Michal\",\"surname\":\"Pracujacy\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
         Worker expectedWorkerWorking = new Worker("Michal", "Pracujacy");
         expectedWorkerWorking.initializeWorkSchedule(start, end);
-        expectedWorkerWorking.getDayMap().get(start).setStart(6);
-        expectedWorkerWorking.getDayMap().get(start).setEnd(14);
-        expectedWorkerWorking.getDayMap().get(middle).setStart(14);
-        expectedWorkerWorking.getDayMap().get(middle).setEnd(22);
-        expectedWorkerWorking.getDayMap().get(end).setStart(14);
-        expectedWorkerWorking.getDayMap().get(end).setEnd(22);
+        expectedWorkerWorking.getDayMap().get(start).setDay(6);
+        expectedWorkerWorking.getDayMap().get(middle).setDay(14);
+        expectedWorkerWorking.getDayMap().get(end).setDay(14);
 
         ObjectMapper mapper = new ObjectMapper();
         // when
