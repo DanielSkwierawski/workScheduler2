@@ -82,11 +82,11 @@ public class WorkerTest {
     @Test
     public void checkWorkerInitializedToJson() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017, 1, 1);
-        LocalDate end = LocalDate.of(2017, 1, 3);
+        LocalDate firstDay = LocalDate.of(2017, 1, 1);
+        LocalDate lastDay = LocalDate.of(2017, 1, 3);
 
         Worker workerInitialized = new Worker("Maciej", "Wisniewski");
-        workerInitialized.initializeWorkSchedule(start, end);
+        workerInitialized.initializeWorkSchedule(firstDay, lastDay);
 
         String expectedJsonWorkerInitialized = "{\"name\":\"Maciej\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]}";
 
@@ -100,15 +100,15 @@ public class WorkerTest {
     @Test
     public void checkWorkerWorkingToJson() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017, 1, 1);
-        LocalDate middle = LocalDate.of(2017, 1, 2);
-        LocalDate end = LocalDate.of(2017, 1, 3);
+        LocalDate firstDay = LocalDate.of(2017, 1, 1);
+        LocalDate secondDay = LocalDate.of(2017, 1, 2);
+        LocalDate lastDay = LocalDate.of(2017, 1, 3);
 
         Worker workerWorking = new Worker("Michal", "Pracujacy");
-        workerWorking.initializeWorkSchedule(start, end);
-        workerWorking.getDayMap().get(start).setDay(6);
-        workerWorking.getDayMap().get(middle).setDay(14);
-        workerWorking.getDayMap().get(end).setDay(14);
+        workerWorking.initializeWorkSchedule(firstDay, lastDay);
+        workerWorking.getDayMap().get(firstDay).setDay(6);
+        workerWorking.getDayMap().get(secondDay).setDay(14);
+        workerWorking.getDayMap().get(lastDay).setDay(14);
 
         String expectedJsonWorkerWorking = "{\"name\":\"Michal\",\"surname\":\"Pracujacy\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
 
@@ -139,15 +139,15 @@ public class WorkerTest {
     @Test
     public void checkJsonToWorkerInitialized() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017, 1, 1);
-        LocalDate middle = LocalDate.of(2017, 1, 2);
-        LocalDate end = LocalDate.of(2017, 1, 3);
+        LocalDate firstDay = LocalDate.of(2017, 1, 1);
+        LocalDate secondDay = LocalDate.of(2017, 1, 2);
+        LocalDate lastDay = LocalDate.of(2017, 1, 3);
         Day dayOff = new Day();
 
         String jsonWorkerInitialized = "{\"name\":\"Maciej\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]}";
 
         Worker expectedWorkerInitialized = new Worker("Maciej", "Wisniewski");
-        expectedWorkerInitialized.initializeWorkSchedule(start, end);
+        expectedWorkerInitialized.initializeWorkSchedule(firstDay, lastDay);
 
         ObjectMapper mapper = new ObjectMapper();
         // when
@@ -158,27 +158,27 @@ public class WorkerTest {
         assertThat(workerInitialized.getSurname()).isEqualTo("Wisniewski");
         assertThat(workerInitialized.getDayMap()).isNotNull();
         assertThat(workerInitialized.getDayMap()).isNotEmpty();
-        assertThat(workerInitialized.getDayMap().get(start)).isEqualTo(dayOff);
-        assertThat(workerInitialized.getDayMap().get(start).isOff()).isTrue();
-        assertThat(workerInitialized.getDayMap().get(middle)).isEqualTo(dayOff);
-        assertThat(workerInitialized.getDayMap().get(middle).isOff()).isTrue();
-        assertThat(workerInitialized.getDayMap().get(end)).isEqualTo(dayOff);
-        assertThat(workerInitialized.getDayMap().get(end).isOff()).isTrue();
+        assertThat(workerInitialized.getDayMap().get(firstDay)).isEqualTo(dayOff);
+        assertThat(workerInitialized.getDayMap().get(firstDay).isOff()).isTrue();
+        assertThat(workerInitialized.getDayMap().get(secondDay)).isEqualTo(dayOff);
+        assertThat(workerInitialized.getDayMap().get(secondDay).isOff()).isTrue();
+        assertThat(workerInitialized.getDayMap().get(lastDay)).isEqualTo(dayOff);
+        assertThat(workerInitialized.getDayMap().get(lastDay).isOff()).isTrue();
     }
 
     @Test
     public void checkJsonToWorkerWorking() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017, 1, 1);
-        LocalDate middle = LocalDate.of(2017, 1, 2);
-        LocalDate end = LocalDate.of(2017, 1, 3);
+        LocalDate firstDay = LocalDate.of(2017, 1, 1);
+        LocalDate secondDay = LocalDate.of(2017, 1, 2);
+        LocalDate lastDay = LocalDate.of(2017, 1, 3);
 
         String jsonWorkerWorking = "{\"name\":\"Michal\",\"surname\":\"Pracujacy\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
         Worker expectedWorkerWorking = new Worker("Michal", "Pracujacy");
-        expectedWorkerWorking.initializeWorkSchedule(start, end);
-        expectedWorkerWorking.getDayMap().get(start).setDay(6);
-        expectedWorkerWorking.getDayMap().get(middle).setDay(14);
-        expectedWorkerWorking.getDayMap().get(end).setDay(14);
+        expectedWorkerWorking.initializeWorkSchedule(firstDay, lastDay);
+        expectedWorkerWorking.getDayMap().get(firstDay).setDay(6);
+        expectedWorkerWorking.getDayMap().get(secondDay).setDay(14);
+        expectedWorkerWorking.getDayMap().get(lastDay).setDay(14);
 
         ObjectMapper mapper = new ObjectMapper();
         // when
@@ -189,14 +189,14 @@ public class WorkerTest {
         assertThat(workerWorking.getSurname()).isEqualTo("Pracujacy");
         assertThat(workerWorking.getDayMap()).isNotNull();
         assertThat(workerWorking.getDayMap()).isNotEmpty();
-        assertThat(workerWorking.getDayMap().get(start).isOff()).isFalse();
-        assertThat(workerWorking.getDayMap().get(start).getStart()).isEqualTo(6);
-        assertThat(workerWorking.getDayMap().get(start).getEnd()).isEqualTo(14);
-        assertThat(workerWorking.getDayMap().get(middle).isOff()).isFalse();
-        assertThat(workerWorking.getDayMap().get(middle).getStart()).isEqualTo(14);
-        assertThat(workerWorking.getDayMap().get(middle).getEnd()).isEqualTo(22);
-        assertThat(workerWorking.getDayMap().get(end).isOff()).isFalse();
-        assertThat(workerWorking.getDayMap().get(end).getStart()).isEqualTo(14);
-        assertThat(workerWorking.getDayMap().get(end).getEnd()).isEqualTo(22);
+        assertThat(workerWorking.getDayMap().get(firstDay).isOff()).isFalse();
+        assertThat(workerWorking.getDayMap().get(firstDay).getStart()).isEqualTo(6);
+        assertThat(workerWorking.getDayMap().get(firstDay).getEnd()).isEqualTo(14);
+        assertThat(workerWorking.getDayMap().get(secondDay).isOff()).isFalse();
+        assertThat(workerWorking.getDayMap().get(secondDay).getStart()).isEqualTo(14);
+        assertThat(workerWorking.getDayMap().get(secondDay).getEnd()).isEqualTo(22);
+        assertThat(workerWorking.getDayMap().get(lastDay).isOff()).isFalse();
+        assertThat(workerWorking.getDayMap().get(lastDay).getStart()).isEqualTo(14);
+        assertThat(workerWorking.getDayMap().get(lastDay).getEnd()).isEqualTo(22);
     }
 }
