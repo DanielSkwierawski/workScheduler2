@@ -98,7 +98,7 @@ public class DayTest {
     @Test
     public void modifyWorkingHours1Parameter() throws Exception {
         // given
-        Day sut = new Day(6);
+        sut = new Day(6);
         assertThat(sut.getStart()).isEqualTo(6);
         assertThat(sut.getEnd()).isEqualTo(14);
         // when
@@ -111,7 +111,7 @@ public class DayTest {
     @Test
     public void modifyWorkingHours2Parameters() throws Exception {
         // given
-        Day sut = new Day(6);
+        sut = new Day(6);
         assertThat(sut.getStart()).isEqualTo(6);
         assertThat(sut.getEnd()).isEqualTo(14);
         // when
@@ -186,6 +186,7 @@ public class DayTest {
         assertThat(dayOff).isEqualTo(expectedDayOff);
         assertThat(dayOff.getStart()).isNull();
         assertThat(dayOff.getEnd()).isNull();
+        assertThat(dayOff.isOff()).isTrue();
     }
 
     @Test
@@ -201,5 +202,6 @@ public class DayTest {
         assertThat(dayOff).isEqualTo(expectedDayOff);
         assertThat(dayOff.getStart()).isNull();
         assertThat(dayOff.getEnd()).isNull();
+        assertThat(dayOff.isOff()).isTrue();
     }
 }
