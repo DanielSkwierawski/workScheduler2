@@ -117,25 +117,25 @@ public class PlanTest {
         planWith2WorkersWithTheirOwnWorkingDayMap.addWorker(worker9);
         String expectedJsonPlanWith2WorkersWithTheirOwnWorkingDayMap = "{\"workerList\":[{\"name\":\"Szymon\",\"surname\":\"Gdynski\",\"dayMap\":[[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]},{\"name\":\"Zaneta\",\"surname\":\"Gdanska\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":6,\"end\":14}]]}]}";
 
-        Plan planWith2WorkersAndThenAddingWorkingDays = new Plan();
+        Plan planWith2WorkersAndThenAddWorkingDays = new Plan();
         Worker worker10 = new Worker("Adam", "Schumacher");
         Worker worker11 = new Worker("Wladyslaw", "Kubica");
-        planWith2WorkersAndThenAddingWorkingDays.addWorker(worker10);
-        planWith2WorkersAndThenAddingWorkingDays.addWorker(worker11);
-        planWith2WorkersAndThenAddingWorkingDays.initializeWorkSchedule(start, end);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setStart(6);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setEnd(14);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setStart(6);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setEnd(14);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setStart(14);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setEnd(22);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setStart(14);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setEnd(22);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setStart(14);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setEnd(22);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setStart(6);
-        planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setEnd(14);
-        String expectedJsonPlanWith2WorkersAndThenAddingWorkingDays = "{\"workerList\":[{\"name\":\"Adam\",\"surname\":\"Schumacher\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":6,\"end\":14}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]},{\"name\":\"Wladyslaw\",\"surname\":\"Kubica\",\"dayMap\":[[\"2017-01-03\",{\"start\":6,\"end\":14}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":14,\"end\":22}]]}]}";
+        planWith2WorkersAndThenAddWorkingDays.addWorker(worker10);
+        planWith2WorkersAndThenAddWorkingDays.addWorker(worker11);
+        planWith2WorkersAndThenAddWorkingDays.initializeWorkSchedule(start, end);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setStart(6);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setEnd(14);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setStart(6);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setEnd(14);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setStart(14);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setEnd(22);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setStart(14);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setEnd(22);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setStart(14);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setEnd(22);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setStart(6);
+        planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setEnd(14);
+        String expectedJsonPlanWith2WorkersAndThenAddWorkingDays = "{\"workerList\":[{\"name\":\"Adam\",\"surname\":\"Schumacher\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":6,\"end\":14}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]},{\"name\":\"Wladyslaw\",\"surname\":\"Kubica\",\"dayMap\":[[\"2017-01-03\",{\"start\":6,\"end\":14}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":14,\"end\":22}]]}]}";
         ObjectMapper mapper = new ObjectMapper();
         // when
         String jsonPlanEmpty = mapper.writeValueAsString(planEmpty);
@@ -144,7 +144,7 @@ public class PlanTest {
         String jsonPlanWith2WorkersAndInitialized = mapper.writeValueAsString(planWith2WorkersAndInitialized);
         String jsonPlanWith2WorkersWithTheirOwnInitializedDayMap = mapper.writeValueAsString(planWith2WorkersWithTheirOwnInitializedDayMap);
         String jsonPlanWith2WorkersWithTheirOwnWorkingDayMap = mapper.writeValueAsString(planWith2WorkersWithTheirOwnWorkingDayMap);
-        String jsonPlanWith2WorkersAndThenAddingWorkingDays = mapper.writeValueAsString(planWith2WorkersAndThenAddingWorkingDays);
+        String jsonPlanWith2WorkersAndThenAddWorkingDays = mapper.writeValueAsString(planWith2WorkersAndThenAddWorkingDays);
         // then
         assertThat(jsonPlanEmpty).isEqualTo(expectedJsonPlanEmpty);
         assertThat(jsonPlanWith1Worker).isEqualTo(expectedJsonPlanWith1Worker);
@@ -152,7 +152,7 @@ public class PlanTest {
         assertThat(jsonPlanWith2WorkersAndInitialized).isEqualTo(expectedJsonPlanWith2WorkersAndInitialized);
         assertThat(jsonPlanWith2WorkersWithTheirOwnInitializedDayMap).isEqualTo(expectedJsonPlanWith2WorkersWithTheirOwnInitializedDayMap);
         assertThat(jsonPlanWith2WorkersWithTheirOwnWorkingDayMap).isEqualTo(expectedJsonPlanWith2WorkersWithTheirOwnWorkingDayMap);
-        assertThat(jsonPlanWith2WorkersAndThenAddingWorkingDays).isEqualTo(expectedJsonPlanWith2WorkersAndThenAddingWorkingDays);
+        assertThat(jsonPlanWith2WorkersAndThenAddWorkingDays).isEqualTo(expectedJsonPlanWith2WorkersAndThenAddWorkingDays);
     }
 
     @Test
@@ -214,25 +214,25 @@ public class PlanTest {
         expectedPlanWith2WorkersWithTheirOwnWorkingDayMap.addWorker(worker8);
         expectedPlanWith2WorkersWithTheirOwnWorkingDayMap.addWorker(worker9);
 
-        String jsonPlanWith2WorkersAndThenAddingWorkingDays = "{\"workerList\":[{\"name\":\"Adam\",\"surname\":\"Schumacher\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":6,\"end\":14}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]},{\"name\":\"Wladyslaw\",\"surname\":\"Kubica\",\"dayMap\":[[\"2017-01-03\",{\"start\":6,\"end\":14}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":14,\"end\":22}]]}]}";
-        Plan expectedPlanWith2WorkersAndThenAddingWorkingDays = new Plan();
+        String jsonPlanWith2WorkersAndThenAddWorkingDays = "{\"workerList\":[{\"name\":\"Adam\",\"surname\":\"Schumacher\",\"dayMap\":[[\"2017-01-03\",{\"start\":14,\"end\":22}],[\"2017-01-02\",{\"start\":6,\"end\":14}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]},{\"name\":\"Wladyslaw\",\"surname\":\"Kubica\",\"dayMap\":[[\"2017-01-03\",{\"start\":6,\"end\":14}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":14,\"end\":22}]]}]}";
+        Plan expectedPlanWith2WorkersAndThenAddWorkingDays = new Plan();
         Worker worker10 = new Worker("Adam", "Schumacher");
         Worker worker11 = new Worker("Wladyslaw", "Kubica");
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.addWorker(worker10);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.addWorker(worker11);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.initializeWorkSchedule(start, end);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setStart(6);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setEnd(14);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setStart(6);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setEnd(14);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setStart(14);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setEnd(22);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setStart(14);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setEnd(22);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setStart(14);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setEnd(22);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setStart(6);
-        expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setEnd(14);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.addWorker(worker10);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.addWorker(worker11);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.initializeWorkSchedule(start, end);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setStart(6);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start).setEnd(14);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setStart(6);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle).setEnd(14);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setStart(14);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end).setEnd(22);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setStart(14);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start).setEnd(22);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setStart(14);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle).setEnd(22);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setStart(6);
+        expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(expectedPlanWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end).setEnd(14);
 
         ObjectMapper mapper = new ObjectMapper();
         // when
@@ -242,7 +242,7 @@ public class PlanTest {
         Plan planWith2WorkersAndInitialized = mapper.readValue(jsonPlanWith2WorkersAndInitialized, Plan.class);
         Plan planWith2WorkersWithTheirOwnInitializedDayMap = mapper.readValue(jsonPlanWith2WorkersWithTheirOwnInitializedDayMap, Plan.class);
         Plan planWith2WorkersWithTheirOwnWorkingDayMap = mapper.readValue(jsonPlanWith2WorkersWithTheirOwnWorkingDayMap, Plan.class);
-        Plan planWith2WorkersAndThenAddingWorkingDays = mapper.readValue(jsonPlanWith2WorkersAndThenAddingWorkingDays, Plan.class);
+        Plan planWith2WorkersAndThenAddWorkingDays = mapper.readValue(jsonPlanWith2WorkersAndThenAddWorkingDays, Plan.class);
         // then
 
         assertThat(planEmpty).isEqualTo(expectedPlanEmpty);
@@ -314,21 +314,21 @@ public class PlanTest {
         assertThat(planWith2WorkersWithTheirOwnWorkingDayMap.getAllWorkers().get(planWith2WorkersWithTheirOwnWorkingDayMap.getAllWorkers().indexOf(worker9)).getDayMap().get(middle)).isEqualTo(dayMorning);
         assertThat(planWith2WorkersWithTheirOwnWorkingDayMap.getAllWorkers().get(planWith2WorkersWithTheirOwnWorkingDayMap.getAllWorkers().indexOf(worker9)).getDayMap().get(end)).isEqualTo(dayAfternoon);
 
-        assertThat(planWith2WorkersAndThenAddingWorkingDays).isEqualTo(expectedPlanWith2WorkersAndThenAddingWorkingDays);
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers()).isEqualTo(Arrays.asList(worker10, worker11));
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getName()).isEqualTo("Adam");
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getSurname()).isEqualTo("Schumacher");
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap()).isNotNull();
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap()).isNotEmpty();
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start)).isEqualTo(dayMorning);
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle)).isEqualTo(dayMorning);
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end)).isEqualTo(dayAfternoon);
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getName()).isEqualTo("Wladyslaw");
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getSurname()).isEqualTo("Kubica");
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap()).isNotNull();
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap()).isNotEmpty();
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start)).isEqualTo(dayAfternoon);
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle)).isEqualTo(dayAfternoon);
-        assertThat(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddingWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end)).isEqualTo(dayMorning);
+        assertThat(planWith2WorkersAndThenAddWorkingDays).isEqualTo(expectedPlanWith2WorkersAndThenAddWorkingDays);
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers()).isEqualTo(Arrays.asList(worker10, worker11));
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getName()).isEqualTo("Adam");
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getSurname()).isEqualTo("Schumacher");
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap()).isNotNull();
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap()).isNotEmpty();
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(start)).isEqualTo(dayMorning);
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(middle)).isEqualTo(dayMorning);
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker10)).getDayMap().get(end)).isEqualTo(dayAfternoon);
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getName()).isEqualTo("Wladyslaw");
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getSurname()).isEqualTo("Kubica");
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap()).isNotNull();
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap()).isNotEmpty();
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(start)).isEqualTo(dayAfternoon);
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(middle)).isEqualTo(dayAfternoon);
+        assertThat(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().get(planWith2WorkersAndThenAddWorkingDays.getAllWorkers().indexOf(worker11)).getDayMap().get(end)).isEqualTo(dayMorning);
     }
 }
