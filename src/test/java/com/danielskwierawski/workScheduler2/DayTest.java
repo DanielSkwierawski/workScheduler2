@@ -99,7 +99,7 @@ public class DayTest {
     }
 
     @Test
-    public void modifyWorkingHours() throws Exception {
+    public void modifyWorkingHours1Parameter() throws Exception {
         // given
         Day sut = new Day(6);
         // when
@@ -110,7 +110,7 @@ public class DayTest {
     }
 
     @Test
-    public void modifyWorkingHours2() throws Exception {
+    public void modifyWorkingHours2Parameters() throws Exception {
         // given
         Day sut = new Day(6);
         // when
