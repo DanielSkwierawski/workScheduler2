@@ -192,16 +192,15 @@ public class DayTest {
     @Test
     public void checkJsonWorkingDayToDay() throws Exception {
         // given
-        String jsonDayOff = "{\"start\":null,\"end\":null}";
-        Day expectedDayOff = new Day();
+        String jsonStandardWorkingDay = "{\"start\":6,\"end\":14}";
+        Day expectedStandardWorkingDay = new Day(6);
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(MapperFeature.AUTO_DETECT_IS_GETTERS, false);
         // when
-        Day dayOff = mapper.readValue(jsonDayOff, Day.class);
+        Day standardWorkingDay = mapper.readValue(jsonStandardWorkingDay, Day.class);
         // then
-        assertThat(dayOff).isEqualTo(expectedDayOff);
-        assertThat(dayOff.getStart()).isNull();
-        assertThat(dayOff.getEnd()).isNull();
-        assertThat(dayOff.isOff()).isTrue();
+        assertThat(standardWorkingDay).isEqualTo(expectedStandardWorkingDay);
+        assertThat(standardWorkingDay.getStart()).isEqualTo(6);
+        assertThat(standardWorkingDay.getEnd()).isEqualTo(14);
+        assertThat(standardWorkingDay.isOff()).isFalse();
     }
 }
