@@ -2,7 +2,6 @@ package com.danielskwierawski.workScheduler2;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.junit.Test;
 
 import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
@@ -145,42 +144,6 @@ public class DayTest {
         assertThat(boolean4).isFalse();
         assertThat(boolean5).isFalse();
 
-    }
-
-    @Test
-    public void checkDayToJsonByGson() throws Exception {
-        // given
-        Day dayOff = new Day();
-        String expectedJsonDayOff = "{}";
-        Day standardWorkingDay = new Day(6);
-        String expectedJsonStandardWorkingDay = "{\"start\":6,\"end\":14}";
-        Gson gson = new Gson();
-        // when
-        String jsonDayOff = gson.toJson(dayOff);
-        String jsonStandardWorkingDay = gson.toJson(standardWorkingDay);
-        // then
-        assertThat(jsonDayOff).isEqualTo(expectedJsonDayOff);
-        assertThat(jsonStandardWorkingDay).isEqualTo(expectedJsonStandardWorkingDay);
-    }
-
-    @Test
-    public void checkJsonToDayByGson() throws Exception {
-        // given
-        String jsonDayOff = "{}";
-        Day expectedDayOff = new Day();
-        String jsonStandardWorkingDay = "{\"start\":6,\"end\":14}";
-        Day expectedStandardWorkingDay = new Day(6);
-        Gson gson = new Gson();
-        // when
-        Day dayOff = gson.fromJson(jsonDayOff, Day.class);
-        Day standardWorkingDay = gson.fromJson(jsonStandardWorkingDay, Day.class);
-        // then
-        assertThat(dayOff).isEqualTo(expectedDayOff);
-        assertThat(dayOff.getStart()).isNull();
-        assertThat(dayOff.getEnd()).isNull();
-        assertThat(standardWorkingDay).isEqualTo(expectedStandardWorkingDay);
-        assertThat(standardWorkingDay.getStart()).isEqualTo(6);
-        assertThat(standardWorkingDay.getEnd()).isEqualTo(14);
     }
 
     @Test
