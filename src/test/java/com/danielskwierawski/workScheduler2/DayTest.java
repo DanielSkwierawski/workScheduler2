@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.Test;
 
-import static com.danielskwierawski.workScheduler2.Plan.*;
+import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
+import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
+import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
