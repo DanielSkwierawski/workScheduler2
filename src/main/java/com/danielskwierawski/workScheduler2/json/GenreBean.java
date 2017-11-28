@@ -1,11 +1,10 @@
 package com.danielskwierawski.workScheduler2.json;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.json.simple.JSONAware;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GenreBean implements JSONAware {
     int genre_id;
@@ -16,7 +15,7 @@ public class GenreBean implements JSONAware {
 
     @Override
     public String toJSONString() {
-        Map<Object , Object> genreBeanJsonMap = new HashMap<Object , Object>();
+        Map<Object, Object> genreBeanJsonMap = new HashMap<Object, Object>();
         genreBeanJsonMap.put("genre_id", getGenre_id());
         genreBeanJsonMap.put("genre_parent_id", getGenre_parent_id());
         genreBeanJsonMap.put("genre_handle", getGenre_handle());

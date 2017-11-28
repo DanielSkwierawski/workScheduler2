@@ -1,1 +1,39 @@
-{"workerList":[{"name":"Daniel","surname":"Kowalski","dayMap":{}},{"name":"Zbigniew","surname":"Wisniewski","dayMap":{"2017-01-03":{},"2017-01-02":{"start":6,"end":14},"2017-01-01":{"start":14,"end":22}}},{"name":"Krzysztof","surname":"Pienkowski","dayMap":{"2017-01-03":{},"2017-01-02":{"start":14,"end":22},"2017-01-01":{"start":6,"end":14}}}]}
+{
+  "workerList": [
+    {
+      "name": "Daniel",
+      "surname": "Kowalski",
+      "dayMap": {}
+    },
+    {
+      "name": "Zbigniew",
+      "surname": "Wisniewski",
+      "dayMap": {
+        "2017-01-03": {},
+        "2017-01-02": {
+          "start": 6,
+          "end": 14
+        },
+        "2017-01-01": {
+          "start": 14,
+          "end": 22
+        }
+      }
+    },
+    {
+      "name": "Krzysztof",
+      "surname": "Pienkowski",
+      "dayMap": {
+        "2017-01-03": {},
+        "2017-01-02": {
+          "start": 14,
+          "end": 22
+        },
+        "2017-01-01": {
+          "start": 6,
+          "end": 14
+        }
+      }
+    }
+  ]
+}

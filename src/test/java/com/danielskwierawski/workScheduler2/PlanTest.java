@@ -1,8 +1,5 @@
 package com.danielskwierawski.workScheduler2;
 
-import com.danielskwierawski.workScheduler2.Day;
-import com.danielskwierawski.workScheduler2.Plan;
-import com.danielskwierawski.workScheduler2.Worker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
@@ -10,7 +7,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
 
 public class PlanTest {
 
@@ -29,7 +25,7 @@ public class PlanTest {
         sut.addWorker(worker1);
         sut.addWorker(worker2);
         // then
-        assertThat(sut.getAllWorkers()).containsExactly(worker1,worker2);
+        assertThat(sut.getAllWorkers()).containsExactly(worker1, worker2);
     }
 
     @Test
@@ -64,9 +60,9 @@ public class PlanTest {
     @Test
     public void checkPlanToJsonByJackson() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017,1,1);
-        LocalDate middle = LocalDate.of(2017,1,2);
-        LocalDate end = LocalDate.of(2017,1,3);
+        LocalDate start = LocalDate.of(2017, 1, 1);
+        LocalDate middle = LocalDate.of(2017, 1, 2);
+        LocalDate end = LocalDate.of(2017, 1, 3);
 
         Plan planEmpty = new Plan();
         String expectedJsonPlanEmpty = "{\"workerList\":[]}";
@@ -158,9 +154,9 @@ public class PlanTest {
     @Test
     public void checkJsonToPlanByJackson() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017,1,1);
-        LocalDate middle = LocalDate.of(2017,1,2);
-        LocalDate end = LocalDate.of(2017,1,3);
+        LocalDate start = LocalDate.of(2017, 1, 1);
+        LocalDate middle = LocalDate.of(2017, 1, 2);
+        LocalDate end = LocalDate.of(2017, 1, 3);
         Day dayOff = new Day();
         Day dayMorning = new Day(6);
         Day dayAfternoon = new Day(14);

@@ -3,8 +3,6 @@ package com.danielskwierawski.workScheduler2.json;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 
-import java.awt.*;
-
 /**
  * This class defines custom exclusion policy. We want to ignore all fields that
  * have been annotated with the Country annotation. Note that we can also ignore

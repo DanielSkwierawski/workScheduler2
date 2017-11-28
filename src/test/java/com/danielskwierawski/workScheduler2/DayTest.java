@@ -1,17 +1,11 @@
 package com.danielskwierawski.workScheduler2;
 
-import com.danielskwierawski.workScheduler2.Day;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 import org.junit.Test;
 
-import java.time.LocalDate;
-
-import static com.danielskwierawski.workScheduler2.Plan.MAX_ALLOWED_END_WORKING;
-import static com.danielskwierawski.workScheduler2.Plan.MIN_ALLOWED_START_WORKING;
-import static com.danielskwierawski.workScheduler2.Plan.DEFAULT_WORKING_TIME;
+import static com.danielskwierawski.workScheduler2.Plan.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
@@ -72,7 +66,7 @@ public class DayTest {
     @Test
     public void createIncorrectWorkingDay_TooEarly() throws Exception {
         // given
-        int startDayAt = MIN_ALLOWED_START_WORKING -1;
+        int startDayAt = MIN_ALLOWED_START_WORKING - 1;
         // when
         try {
             sut = new Day(startDayAt);
@@ -107,9 +101,9 @@ public class DayTest {
         // given
         Day day1 = new Day();
         Day day2 = new Day(6);
-        Day day3 = new Day(6,12);
+        Day day3 = new Day(6, 12);
         Day day4 = new Day(14);
-        Day day5 = new Day(16,22);
+        Day day5 = new Day(16, 22);
         // when
         day1.up1();
         day2.up1();

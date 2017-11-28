@@ -1,7 +1,5 @@
 package com.danielskwierawski.workScheduler2;
 
-import com.danielskwierawski.workScheduler2.Day;
-import com.danielskwierawski.workScheduler2.Worker;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
@@ -72,9 +70,9 @@ public class WorkerTest {
     @Test
     public void checkWorkerToJsonByJackson() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017,1,1);
-        LocalDate middle = LocalDate.of(2017,1,2);
-        LocalDate end = LocalDate.of(2017,1,3);
+        LocalDate start = LocalDate.of(2017, 1, 1);
+        LocalDate middle = LocalDate.of(2017, 1, 2);
+        LocalDate end = LocalDate.of(2017, 1, 3);
 
         Worker workerEmpty = new Worker("Artur", "Kowalski");
         String expectedJsonWorkerEmpty = "{\"name\":\"Artur\",\"surname\":\"Kowalski\",\"dayMap\":[]}";
@@ -108,9 +106,9 @@ public class WorkerTest {
     @Test
     public void checkJsonToWorkerByJackson() throws Exception {
         // given
-        LocalDate start = LocalDate.of(2017,1,1);
-        LocalDate middle = LocalDate.of(2017,1,2);
-        LocalDate end = LocalDate.of(2017,1,3);
+        LocalDate start = LocalDate.of(2017, 1, 1);
+        LocalDate middle = LocalDate.of(2017, 1, 2);
+        LocalDate end = LocalDate.of(2017, 1, 3);
         Day dayOff = new Day();
 
         String jsonWorkerEmpty = "{\"name\":\"Artur\",\"surname\":\"Kowalski\",\"dayMap\":[]}";

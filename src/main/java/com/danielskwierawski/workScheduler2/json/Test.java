@@ -3,7 +3,6 @@ package com.danielskwierawski.workScheduler2.json;
 import org.json.JSONObject;
 
 
-
 public class Test {
 
     public static void main(String[] args) {
@@ -49,7 +48,6 @@ public class Test {
         } else {
             System.out.println("key: " + key + " isn't null");
         }
-
 
 
         // prints
