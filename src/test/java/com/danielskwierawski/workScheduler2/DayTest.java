@@ -99,6 +99,8 @@ public class DayTest {
     public void modifyWorkingHours1Parameter() throws Exception {
         // given
         Day sut = new Day(6);
+        assertThat(sut.getStart()).isEqualTo(6);
+        assertThat(sut.getEnd()).isEqualTo(14);
         // when
         sut.setDay(14);
         // then
@@ -110,6 +112,8 @@ public class DayTest {
     public void modifyWorkingHours2Parameters() throws Exception {
         // given
         Day sut = new Day(6);
+        assertThat(sut.getStart()).isEqualTo(6);
+        assertThat(sut.getEnd()).isEqualTo(14);
         // when
         sut.setDay(14, 21);
         // then
