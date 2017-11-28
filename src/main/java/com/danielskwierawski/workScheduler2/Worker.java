@@ -36,10 +36,6 @@ public class Worker {
         }
     }
 
-    public Map<LocalDate, Day> returnWorkSchedule() {
-        return dayMap;
-    }
-
     public void dropWorkSchedule(LocalDate start, LocalDate end) {
         for (LocalDate current = start; !current.isAfter(end); current = current.plusDays(1)) {
             dayMap.remove(current);

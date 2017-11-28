@@ -40,7 +40,7 @@ public class WorkerTest {
         expected.put(lastDay, new Day());
         // when
         sut.initializeWorkSchedule(firstDay, lastDay);
-        Map<LocalDate, Day> result = sut.returnWorkSchedule();
+        Map<LocalDate, Day> result = sut.getDayMap();
         // then
         assertThat(result).size().isEqualTo(3);
         assertThat(result).containsAllEntriesOf(expected);
@@ -61,7 +61,7 @@ public class WorkerTest {
         sut.initializeWorkSchedule(firstDay, lastDay);
         // when
         sut.dropWorkSchedule(firstDay, secondDay);
-        Map<LocalDate, Day> result = sut.returnWorkSchedule();
+        Map<LocalDate, Day> result = sut.getDayMap();
         // then
         assertThat(result).size().isEqualTo(1);
         assertThat(result).containsAllEntriesOf(expected);

@@ -50,7 +50,7 @@ public class PlanTest {
         // then
         List<Worker> allWorkers = sut.getWorkerList();
         for (Worker worker : allWorkers) {
-            Map<LocalDate, Day> result = worker.returnWorkSchedule();
+            Map<LocalDate, Day> result = worker.getDayMap();
             assertThat(result).size().isEqualTo(3);
             assertThat(result).containsAllEntriesOf(expected);
         }
