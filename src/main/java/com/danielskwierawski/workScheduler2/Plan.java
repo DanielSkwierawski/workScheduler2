@@ -2,11 +2,13 @@ package com.danielskwierawski.workScheduler2;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.EqualsAndHashCode;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@EqualsAndHashCode
 public class Plan {
     @JsonProperty
     private List<Worker> workerList = new ArrayList<>();
