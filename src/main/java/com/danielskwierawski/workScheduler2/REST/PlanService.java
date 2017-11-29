@@ -63,7 +63,21 @@ public class PlanService {
     @GET
     @Path("/worker")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getWorker(@QueryParam("name") String name, @QueryParam("surname") String surname) {
+    public Response getWorkerQueryParam(@QueryParam("name") String name, @QueryParam("surname") String surname) {
+        List<Worker> workerList = plan.getWorkerList();
+
+        for (Worker worker : workerList) {
+            if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
+                return Response.ok(worker).build();
+            }
+        }
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Path("/worker/{name}.{surname}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getWorkerPathParam(@PathParam("name") String name, @PathParam("surname") String surname) {
         List<Worker> workerList = plan.getWorkerList();
 
         for (Worker worker : workerList) {
