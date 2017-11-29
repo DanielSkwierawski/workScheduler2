@@ -25,28 +25,31 @@ public class PlanService {
     }
 
     @GET
-    @Path("/workers")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllWorkers() {
-        LocalDate start = LocalDate.of(2017, 1, 1);
-        LocalDate middle = LocalDate.of(2017, 1, 2);
-        LocalDate end = LocalDate.of(2017, 1, 3);
+    @Path("/addInitial")
+    public Response addInitial() {
+        LocalDate firstDay = LocalDate.of(2017, 1, 1);
+        LocalDate secondDay = LocalDate.of(2017, 1, 2);
+        LocalDate lastDay = LocalDate.of(2017, 1, 3);
         Worker worker1 = new Worker("Daniel", "Kowalski");
         Worker worker2 = new Worker("Zbigniew", "Wisniewski");
-        worker2.initializeWorkSchedule(start, end);
-        worker2.getDayMap().get(start).setStart(14);
-        worker2.getDayMap().get(start).setEnd(22);
-        worker2.getDayMap().get(middle).setStart(6);
-        worker2.getDayMap().get(middle).setEnd(14);
+        worker2.initializeWorkSchedule(firstDay, lastDay);
         Worker worker3 = new Worker("Krzysztof", "Pienkowski");
-        worker3.initializeWorkSchedule(start, end);
-        worker3.getDayMap().get(start).setStart(6);
-        worker3.getDayMap().get(start).setEnd(14);
-        worker3.getDayMap().get(middle).setStart(14);
-        worker3.getDayMap().get(middle).setEnd(22);
+        worker3.initializeWorkSchedule(firstDay, lastDay);
+        worker3.getDayMap().get(firstDay).setStart(6);
+        worker3.getDayMap().get(firstDay).setEnd(14);
+        worker3.getDayMap().get(secondDay).setStart(14);
+        worker3.getDayMap().get(secondDay).setEnd(22);
         plan.addWorker(worker1);
         plan.addWorker(worker2);
         plan.addWorker(worker3);
+
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/workers")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllWorkers() {
 
         List<Worker> workerList = plan.getWorkerList();
 
