@@ -113,7 +113,8 @@ public class PlanService {
                 return getAllWorkers();
             }
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+        plan.addWorker(worker);
+        return getAllWorkers();
     }
 
     @DELETE
