@@ -1,14 +1,15 @@
 package com.danielskwierawski.workScheduler2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import static com.danielskwierawski.workScheduler2.model.Plan.DEFAULT_WORKING_TIME;
-import static com.danielskwierawski.workScheduler2.model.Plan.MAX_ALLOWED_END_WORKING;
-import static com.danielskwierawski.workScheduler2.model.Plan.MIN_ALLOWED_START_WORKING;
+import static com.danielskwierawski.workScheduler2.model.Plan.*;
 
 @EqualsAndHashCode
+@ToString
 public class Day {
     @Getter
     @Setter
@@ -16,6 +17,16 @@ public class Day {
     @Getter
     @Setter
     private Integer end;
+
+    public void setDay(Integer start) {
+        this.start = start;
+        this.end = start + DEFAULT_WORKING_TIME;
+    }
+
+    public void setDay(Integer start, Integer end) {
+        this.start = start;
+        this.end = end;
+    }
 
     public Day() {
     }
@@ -35,6 +46,7 @@ public class Day {
         this.end = end;
     }
 
+    @JsonIgnore
     public boolean isOff() {
         if (this.start == null) {
             return true;

@@ -48,7 +48,7 @@ public class PlanService {
         plan.addWorker(worker2);
         plan.addWorker(worker3);
 
-        List<Worker> workerList = plan.getAllWorkers();
+        List<Worker> workerList = plan.getWorkerList();
 
         if (workerList.isEmpty()) {
             return Response.noContent().build();
@@ -61,7 +61,7 @@ public class PlanService {
     @Path("/worker")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWorker(@QueryParam("name") String name, @QueryParam("surname") String surname) {
-        List<Worker> workerList = plan.getAllWorkers();
+        List<Worker> workerList = plan.getWorkerList();
 
         for (Worker worker : workerList) {
             if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {

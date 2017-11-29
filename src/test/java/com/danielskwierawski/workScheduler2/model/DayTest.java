@@ -1,11 +1,9 @@
 package com.danielskwierawski.workScheduler2.model;
 
-import com.danielskwierawski.workScheduler2.model.Day;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-import static com.danielskwierawski.workScheduler2.model.Plan.MAX_ALLOWED_END_WORKING;
-import static com.danielskwierawski.workScheduler2.model.Plan.MIN_ALLOWED_START_WORKING;
-import static com.danielskwierawski.workScheduler2.model.Plan.DEFAULT_WORKING_TIME;
+import static com.danielskwierawski.workScheduler2.model.Plan.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
@@ -66,7 +64,7 @@ public class DayTest {
     @Test
     public void createIncorrectWorkingDay_TooEarly() throws Exception {
         // given
-        int startDayAt = MIN_ALLOWED_START_WORKING -1;
+        int startDayAt = MIN_ALLOWED_START_WORKING - 1;
         // when
         try {
             sut = new Day(startDayAt);
@@ -97,13 +95,39 @@ public class DayTest {
     }
 
     @Test
+    public void modifyWorkingHours1Parameter() throws Exception {
+        // given
+        sut = new Day(6);
+        assertThat(sut.getStart()).isEqualTo(6);
+        assertThat(sut.getEnd()).isEqualTo(14);
+        // when
+        sut.setDay(14);
+        // then
+        assertThat(sut.getStart()).isEqualTo(14);
+        assertThat(sut.getEnd()).isEqualTo(22);
+    }
+
+    @Test
+    public void modifyWorkingHours2Parameters() throws Exception {
+        // given
+        sut = new Day(6);
+        assertThat(sut.getStart()).isEqualTo(6);
+        assertThat(sut.getEnd()).isEqualTo(14);
+        // when
+        sut.setDay(14, 21);
+        // then
+        assertThat(sut.getStart()).isEqualTo(14);
+        assertThat(sut.getEnd()).isEqualTo(21);
+    }
+
+    @Test
     public void checkUp1() throws Exception {
         // given
         Day day1 = new Day();
         Day day2 = new Day(6);
-        Day day3 = new Day(6,12);
+        Day day3 = new Day(6, 12);
         Day day4 = new Day(14);
-        Day day5 = new Day(16,22);
+        Day day5 = new Day(16, 22);
         // when
         day1.up1();
         day2.up1();
@@ -121,5 +145,60 @@ public class DayTest {
         assertThat(boolean4).isFalse();
         assertThat(boolean5).isFalse();
 
+    }
+
+    @Test
+    public void checkDayOffToJson() throws Exception {
+        // given
+        Day dayOff = new Day();
+        String expectedJsonDayOff = "{\"start\":null,\"end\":null}";
+        ObjectMapper mapper = new ObjectMapper();
+        // when
+        String jsonDayOff = mapper.writeValueAsString(dayOff);
+        // then
+        assertThat(jsonDayOff).isEqualTo(expectedJsonDayOff);
+    }
+
+    @Test
+    public void checkWorkingDayToJson() throws Exception {
+        // given
+        Day standardWorkingDay = new Day(6);
+        String expectedJsonStandardWorkingDay = "{\"start\":6,\"end\":14}";
+        ObjectMapper mapper = new ObjectMapper();
+        // when
+        String jsonStandardWorkingDay = mapper.writeValueAsString(standardWorkingDay);
+        // then
+        assertThat(jsonStandardWorkingDay).isEqualTo(expectedJsonStandardWorkingDay);
+    }
+
+
+    @Test
+    public void checkJsonDayOffToDay() throws Exception {
+        // given
+        String jsonDayOff = "{\"start\":null,\"end\":null}";
+        Day expectedDayOff = new Day();
+        ObjectMapper mapper = new ObjectMapper();
+        // when
+        Day dayOff = mapper.readValue(jsonDayOff, Day.class);
+        // then
+        assertThat(dayOff).isEqualTo(expectedDayOff);
+        assertThat(dayOff.getStart()).isNull();
+        assertThat(dayOff.getEnd()).isNull();
+        assertThat(dayOff.isOff()).isTrue();
+    }
+
+    @Test
+    public void checkJsonWorkingDayToDay() throws Exception {
+        // given
+        String jsonStandardWorkingDay = "{\"start\":6,\"end\":14}";
+        Day expectedStandardWorkingDay = new Day(6);
+        ObjectMapper mapper = new ObjectMapper();
+        // when
+        Day standardWorkingDay = mapper.readValue(jsonStandardWorkingDay, Day.class);
+        // then
+        assertThat(standardWorkingDay).isEqualTo(expectedStandardWorkingDay);
+        assertThat(standardWorkingDay.getStart()).isEqualTo(6);
+        assertThat(standardWorkingDay.getEnd()).isEqualTo(14);
+        assertThat(standardWorkingDay.isOff()).isFalse();
     }
 }
