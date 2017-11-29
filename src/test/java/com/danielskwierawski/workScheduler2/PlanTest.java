@@ -50,8 +50,8 @@ public class PlanTest {
         assertThat(worker1.getDayMap().get(firstDay)).isEqualTo(dayOff);
         assertThat(worker1.getDayMap().get(secondDay).isOff()).isTrue();
         assertThat(worker1.getDayMap().get(secondDay)).isEqualTo(dayOff);
-        assertThat(worker1.getDayMap().get(secondDay).isOff()).isTrue();
-        assertThat(worker1.getDayMap().get(secondDay)).isEqualTo(dayOff);
+        assertThat(worker1.getDayMap().get(lastDay).isOff()).isTrue();
+        assertThat(worker1.getDayMap().get(lastDay)).isEqualTo(dayOff);
         assertThat(worker1.getDayMap().size()).isEqualTo(3);
         assertThat(worker1.getDayMap()).containsAllEntriesOf(expected);
 
@@ -59,8 +59,8 @@ public class PlanTest {
         assertThat(worker2.getDayMap().get(firstDay)).isEqualTo(dayOff);
         assertThat(worker2.getDayMap().get(secondDay).isOff()).isTrue();
         assertThat(worker2.getDayMap().get(secondDay)).isEqualTo(dayOff);
-        assertThat(worker2.getDayMap().get(secondDay).isOff()).isTrue();
-        assertThat(worker2.getDayMap().get(secondDay)).isEqualTo(dayOff);
+        assertThat(worker2.getDayMap().get(lastDay).isOff()).isTrue();
+        assertThat(worker2.getDayMap().get(lastDay)).isEqualTo(dayOff);
         assertThat(worker2.getDayMap().size()).isEqualTo(3);
         assertThat(worker2.getDayMap()).containsAllEntriesOf(expected);
     }

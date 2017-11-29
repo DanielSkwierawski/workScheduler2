@@ -10,7 +10,6 @@ import java.util.List;
 
 @EqualsAndHashCode
 public class Plan {
-    @JsonProperty
     @Getter
     private List<Worker> workerList = new ArrayList<>();
     public static final int DEFAULT_WORKING_TIME = 8;
