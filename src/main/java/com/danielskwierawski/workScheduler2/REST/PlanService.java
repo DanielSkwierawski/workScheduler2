@@ -93,6 +93,11 @@ public class PlanService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addWorker(Worker worker) {
+        for (Worker iterator: plan.getWorkerList()) {
+            if (iterator.getName().equals(worker.getName()) && iterator.getSurname().equals(worker.getSurname())) {
+                return Response.status(Response.Status.CONFLICT).build();
+            }
+        }
         plan.addWorker(worker);
         return getAllWorkers();
     }
