@@ -93,11 +93,7 @@ public class PlanService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addWorker(Worker worker) {
-
-        Worker newWorker = new Worker(worker.getName(), worker.getSurname());
-
-        plan.addWorker(newWorker);
-
+        plan.addWorker(worker);
         return getAllWorkers();
     }
 
