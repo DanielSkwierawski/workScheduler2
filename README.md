@@ -15,3 +15,7 @@ http://localhost:8080/workScheduler2/worker
 
 PUT
 http://localhost:8080/workScheduler2/worker
+
+DELETE
+http://localhost:8080/workScheduler2/worker?name=Zbigniew&surname=Wisniewski
+http://localhost:8080/workScheduler2/worker/Zbigniew.Wisniewski

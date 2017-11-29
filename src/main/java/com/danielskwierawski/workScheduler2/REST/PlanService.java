@@ -115,4 +115,34 @@ public class PlanService {
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
+
+    @DELETE
+    @Path("/worker")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteWorkerQueryParam(@QueryParam("name") String name, @QueryParam("surname") String surname) {
+        List<Worker> workerList = plan.getWorkerList();
+
+        for (Worker worker : workerList) {
+            if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
+                workerList.remove(worker);
+                return getAllWorkers();
+            }
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @DELETE
+    @Path("/worker/{name}.{surname}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteWorkerPathParam(@PathParam("name") String name, @PathParam("surname") String surname) {
+        List<Worker> workerList = plan.getWorkerList();
+
+        for (Worker worker : workerList) {
+            if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
+                workerList.remove(worker);
+                return getAllWorkers();
+            }
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
 }
