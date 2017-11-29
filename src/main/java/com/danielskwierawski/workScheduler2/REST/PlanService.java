@@ -96,16 +96,4 @@ public class PlanService {
         plan.addWorker(worker);
         return getAllWorkers();
     }
-
-    @POST
-    @Path("/day")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response addDay(Day day) {
-        Day newDay = day;
-
-        return Response.ok(newDay).build();
-    }
-
-
 }
