@@ -101,4 +101,18 @@ public class PlanService {
         plan.addWorker(worker);
         return getAllWorkers();
     }
+
+    @PUT
+    @Path("/worker")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateWorker(Worker worker) {
+        for (Worker iterator : plan.getWorkerList()) {
+            if (iterator.getName().equals(worker.getName()) && iterator.getSurname().equals(worker.getSurname())) {
+                iterator.setDayMap(worker.getDayMap());
+                return getAllWorkers();
+            }
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
 }

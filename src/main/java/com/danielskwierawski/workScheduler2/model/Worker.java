@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Worker {
     @Getter
     private String surname;
     @Getter
+    @Setter
     @JsonSerialize(using = MapSerializer.class)
     @JsonDeserialize(using = MapDeserializer.class, keyAs = LocalDate.class, contentAs = Day.class)
     private Map<LocalDate, Day> dayMap = new HashMap<LocalDate, Day>();
