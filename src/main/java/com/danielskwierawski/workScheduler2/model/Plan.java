@@ -26,5 +26,9 @@ public class Plan {
             worker.initializeWorkSchedule(start, end);
         }
     }
+
+    public void removeAllWorkers() {
+        workerList.clear();
+    }
 }
 

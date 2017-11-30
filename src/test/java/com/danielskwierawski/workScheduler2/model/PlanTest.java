@@ -445,4 +445,20 @@ public class PlanTest {
         assertThat(planWith2WorkersAndThenAddWorkingDays.getWorkerList().get(planWith2WorkersAndThenAddWorkingDays.getWorkerList().indexOf(worker11)).getDayMap().get(lastDay).isOff()).isFalse();
         assertThat(planWith2WorkersAndThenAddWorkingDays.getWorkerList().get(planWith2WorkersAndThenAddWorkingDays.getWorkerList().indexOf(worker11)).getDayMap().get(lastDay)).isEqualTo(dayMorning);
     }
+
+    @Test
+    public void checkRemoveAllWorkers() throws Exception {
+        // given
+        sut = new Plan();
+        Worker worker1 = new Worker("Artur", "Kowalski");
+        Worker worker2 = new Worker("Zbigniew", "Wisniewski");
+        sut.addWorker(worker1);
+        sut.addWorker(worker2);
+        assertThat(sut.getWorkerList()).containsExactly(worker1, worker2);
+        // when
+        sut.removeAllWorkers();
+        // then
+        assertThat(sut.getWorkerList()).isEmpty();
+
+    }
 }
