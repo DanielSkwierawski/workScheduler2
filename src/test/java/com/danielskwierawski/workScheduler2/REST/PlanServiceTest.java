@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.delete;
 import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlanServiceTest {
@@ -87,5 +88,18 @@ public class PlanServiceTest {
         assertThat(jsonDanielKowalski).isEqualTo(expectedJsonDanielKowalski);
         assertThat(jsonZbigniewWisniewski).isEqualTo(expectedJsonZbigniewWisniewski);
         assertThat(jsonKrzysztofPienkowski).isEqualTo(expectedJsonKrzysztofPienkowski);
+    }
+
+    @Test
+    public void whenWorkerListIsEmptyThenStatusCodeIs204() throws Exception {
+        delete("/workScheduler2/workers");
+        given().when().get("http://localhost:8080/workScheduler2/workers").then().statusCode(204);
+    }
+
+    @Test
+    public void whenWorkerListContainsWorkersThenStatusCodeIs200() throws Exception {
+        delete("/workScheduler2/workers");
+        get("/workScheduler2/addInitial");
+        given().when().get("http://localhost:8080/workScheduler2/workers").then().statusCode(200);
     }
 }
