@@ -146,4 +146,11 @@ public class PlanService {
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
+
+    @DELETE
+    @Path("/workers")
+    public Response deleteAllWorkers() {
+        plan.removeAllWorkers();
+        return Response.ok().build();
+    }
 }
