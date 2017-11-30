@@ -48,8 +48,8 @@ public class PlanServiceTest {
         delete("/workScheduler2/workers");
         get("/workScheduler2/addInitial");
         String expectedJsonDanielKowalski = "{\"name\":\"Daniel\",\"surname\":\"Kowalski\",\"dayMap\":[]}";
-        String expectedJsonZbigniewWisniewski = "";
-        String expectedJsonKrzysztofPienkowski = "";
+        String expectedJsonZbigniewWisniewski = "{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]}";
+        String expectedJsonKrzysztofPienkowski = "{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
         // when
         String jsonDanielKowalski = get("/workScheduler2/worker/Daniel.Kowalski").asString();
         String jsonZbigniewWisniewski = get("/workScheduler2/worker/Zbigniew.Wisniewski").asString();
