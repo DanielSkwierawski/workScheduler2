@@ -30,4 +30,33 @@ public class PlanServiceTest {
         // then
         assertThat(json).isEqualTo(expectedJson);
     }
+
+    @Test
+    public void checkGETWorkerPathParamWhenEmpty() throws Exception {
+        // given
+        delete("/workScheduler2/workers");
+        String expectedJson = "";
+        // when
+        String json = get("/workScheduler2/worker/Daniel.Kowalski").asString();
+        // then
+        assertThat(json).isEqualTo(expectedJson);
+    }
+
+    @Test
+    public void checkGETWorkerPathParam() throws Exception {
+        // given
+        delete("/workScheduler2/workers");
+        get("/workScheduler2/addInitial");
+        String expectedJsonDanielKowalski = "{\"name\":\"Daniel\",\"surname\":\"Kowalski\",\"dayMap\":[]}";
+        String expectedJsonZbigniewWisniewski = "";
+        String expectedJsonKrzysztofPienkowski = "";
+        // when
+        String jsonDanielKowalski = get("/workScheduler2/worker/Daniel.Kowalski").asString();
+        String jsonZbigniewWisniewski = get("/workScheduler2/worker/Zbigniew.Wisniewski").asString();
+        String jsonKrzysztofPienkowski = get("/workScheduler2/worker/Krzysztof.Pienkowski").asString();
+        // then
+        assertThat(jsonDanielKowalski).isEqualTo(expectedJsonDanielKowalski);
+        assertThat(jsonZbigniewWisniewski).isEqualTo(expectedJsonZbigniewWisniewski);
+        assertThat(jsonKrzysztofPienkowski).isEqualTo(expectedJsonKrzysztofPienkowski);
+    }
 }
