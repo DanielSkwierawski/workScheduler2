@@ -19,4 +19,15 @@ public class PlanServiceTest {
         // then
         assertThat(json).isEqualTo(expectedJson);
     }
+
+    @Test
+    public void checkGETWorkersWhenEmpty() throws Exception {
+        // given
+        delete("/workScheduler2/workers");
+        String expectedJson = "";
+        // when
+        String json = get("/workScheduler2/workers").asString();
+        // then
+        assertThat(json).isEqualTo(expectedJson);
+    }
 }
