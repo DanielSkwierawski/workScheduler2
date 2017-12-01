@@ -20,13 +20,10 @@ public class PlanService {
     @Path("/workers")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllWorkers() {
-
         List<Worker> workerList = plan.getWorkerList();
-
         if (workerList.isEmpty()) {
             return Response.noContent().build();
         }
-
         return Response.ok(workerList).build();
     }
 
@@ -35,7 +32,6 @@ public class PlanService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWorkerQueryParam(@QueryParam("name") String name, @QueryParam("surname") String surname) {
         List<Worker> workerList = plan.getWorkerList();
-
         for (Worker worker : workerList) {
             if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
                 return Response.ok(worker).build();
@@ -49,7 +45,6 @@ public class PlanService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWorkerPathParam(@PathParam("name") String name, @PathParam("surname") String surname) {
         List<Worker> workerList = plan.getWorkerList();
-
         for (Worker worker : workerList) {
             if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
                 return Response.ok(worker).build();
@@ -92,7 +87,6 @@ public class PlanService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteWorkerQueryParam(@QueryParam("name") String name, @QueryParam("surname") String surname) {
         List<Worker> workerList = plan.getWorkerList();
-
         for (Worker worker : workerList) {
             if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
                 workerList.remove(worker);
@@ -107,7 +101,6 @@ public class PlanService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteWorkerPathParam(@PathParam("name") String name, @PathParam("surname") String surname) {
         List<Worker> workerList = plan.getWorkerList();
-
         for (Worker worker : workerList) {
             if (worker.getName().equals(name) && worker.getSurname().equals(surname)) {
                 workerList.remove(worker);
