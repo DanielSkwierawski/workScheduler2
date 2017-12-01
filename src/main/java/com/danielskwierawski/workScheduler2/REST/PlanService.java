@@ -17,13 +17,6 @@ public class PlanService {
     private Plan plan;
 
     @GET
-    @Path("/hello/{name}")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response sayHello(@PathParam("name") String name) {
-        return Response.ok(name).build();
-    }
-
-    @GET
     @Path("/addInitial")
     public Response addInitial() {
         LocalDate firstDay = LocalDate.of(2017, 1, 1);
