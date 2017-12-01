@@ -10,6 +10,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlanServiceTest {
 
+    public void addInitialWorkers() {
+        LocalDate firstDay = LocalDate.of(2017, 1, 1);
+        LocalDate secondDay = LocalDate.of(2017, 1, 2);
+        LocalDate lastDay = LocalDate.of(2017, 1, 3);
+        Worker worker1 = new Worker("Daniel", "Kowalski");
+        Worker worker2 = new Worker("Zbigniew", "Wisniewski");
+        worker2.initializeWorkSchedule(firstDay, lastDay);
+        Worker worker3 = new Worker("Krzysztof", "Pienkowski");
+        worker3.initializeWorkSchedule(firstDay, lastDay);
+        worker3.getDayMap().get(firstDay).setDay(6);
+        worker3.getDayMap().get(secondDay).setDay(14);
+        given().contentType("application/json").body(worker1).when().post("/workScheduler2/worker").then().statusCode(200);
+        given().contentType("application/json").body(worker2).when().post("/workScheduler2/worker").then().statusCode(200);
+        given().contentType("application/json").body(worker3).when().post("/workScheduler2/worker").then().statusCode(200);
+    }
+
     @Test
     public void checkGETWorkersWhenEmptyReturnsEmptyString() throws Exception {
         // given
@@ -31,7 +47,7 @@ public class PlanServiceTest {
     public void checkGETWorkersReturnsJSONWithWorkers() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         String expectedJson = "[{\"name\":\"Daniel\",\"surname\":\"Kowalski\",\"dayMap\":[]},{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]},{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}]";
         // when
         String json = get("/workScheduler2/workers").asString();
@@ -42,7 +58,7 @@ public class PlanServiceTest {
     @Test
     public void checkGETWorkersReturns200() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         given().when().get("/workScheduler2/workers").then().statusCode(200);
     }
 
@@ -67,7 +83,7 @@ public class PlanServiceTest {
     public void checkGETWorkerPathParamReturnsJSONWithParticularWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         String expectedJsonDanielKowalski = "{\"name\":\"Daniel\",\"surname\":\"Kowalski\",\"dayMap\":[]}";
         String expectedJsonZbigniewWisniewski = "{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]}";
         String expectedJsonKrzysztofPienkowski = "{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
@@ -84,7 +100,7 @@ public class PlanServiceTest {
     @Test
     public void checkGETWorkerPathParamReturns200() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         given().when().get("/workScheduler2/worker/Daniel.Kowalski").then().statusCode(200);
         given().when().get("/workScheduler2/worker/Zbigniew.Wisniewski").then().statusCode(200);
         given().when().get("/workScheduler2/worker/Krzysztof.Pienkowski").then().statusCode(200);
@@ -111,7 +127,7 @@ public class PlanServiceTest {
     public void checkGETWorkerQueryParamReturnsJSONWithParticularWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         String expectedJsonDanielKowalski = "{\"name\":\"Daniel\",\"surname\":\"Kowalski\",\"dayMap\":[]}";
         String expectedJsonZbigniewWisniewski = "{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]}";
         String expectedJsonKrzysztofPienkowski = "{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}";
@@ -128,7 +144,7 @@ public class PlanServiceTest {
     @Test
     public void checkGETWorkerQueryParamReturns200() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         given().when().get("/workScheduler2/worker?name=Daniel&surname=Kowalski").then().statusCode(200);
         given().when().get("/workScheduler2/worker?name=Zbigniew&surname=Wisniewski").then().statusCode(200);
         given().when().get("/workScheduler2/worker?name=Krzysztof&surname=Pienkowski").then().statusCode(200);
@@ -142,7 +158,8 @@ public class PlanServiceTest {
     @Test
     public void checkAfterDeleteAllWorkersThereAreNoWorker() throws Exception {
         // given
-        get("/workScheduler2/addInitial");
+        delete("/workScheduler2/workers");
+        addInitialWorkers();
         // when
         delete("/workScheduler2/workers");
         // then
@@ -162,7 +179,7 @@ public class PlanServiceTest {
     public void AfterDELETEWorkerPathParamThereIsNoParticularWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         // when
         delete("/workScheduler2/worker/Daniel.Kowalski");
         // then
@@ -175,7 +192,7 @@ public class PlanServiceTest {
     @Test
     public void checkDELETEWorkerPathParamReturns200WhenThereIsOtherWorker() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         given().when().delete("/workScheduler2/worker/Daniel.Kowalski").then().statusCode(200);
     }
 
@@ -183,7 +200,7 @@ public class PlanServiceTest {
     public void checkDELETEWorkerPathParamReturnsJSONWithWorkersWhenThereIsOtherWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         String expectedJson = "[{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]},{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}]";
         // when
         String json = delete("/workScheduler2/worker/Daniel.Kowalski").asString();
@@ -194,7 +211,7 @@ public class PlanServiceTest {
     @Test
     public void checkDELETEWorkerPathParamReturns204WhenThereIsNoWorker() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         delete("/workScheduler2/worker/Zbigniew.Wisniewski");
         delete("/workScheduler2/worker/Krzysztof.Pienkowski");
         given().when().delete("/workScheduler2/worker/Daniel.Kowalski").then().statusCode(204);
@@ -204,7 +221,7 @@ public class PlanServiceTest {
     public void checkDELETEWorkerPathParamReturnsEmptyStringWhenThereIsNoWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         delete("/workScheduler2/worker/Zbigniew.Wisniewski");
         delete("/workScheduler2/worker/Krzysztof.Pienkowski");
         String expectedJson = "";
@@ -224,7 +241,7 @@ public class PlanServiceTest {
     public void AfterDELETEWorkerQueryParamThereIsNoParticularWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         // when
         delete("/workScheduler2/worker?name=Daniel&surname=Kowalski");
         // then
@@ -236,7 +253,7 @@ public class PlanServiceTest {
     @Test
     public void checkDELETEWorkerQueryParamReturns200WhenThereIsOtherWorker() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         given().when().delete("/workScheduler2/worker?name=Daniel&surname=Kowalski").then().statusCode(200);
     }
 
@@ -244,7 +261,7 @@ public class PlanServiceTest {
     public void checkDELETEWorkerQueryParamReturnsJSONWithWorkersWhenThereIsOtherWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         String expectedJson = "[{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]},{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]}]";
         // when
         String json = delete("/workScheduler2/worker?name=Daniel&surname=Kowalski").asString();
@@ -255,7 +272,7 @@ public class PlanServiceTest {
     @Test
     public void checkDELETEWorkerQueryParamReturns204WhenThereIsNoWorker() throws Exception {
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         delete("/workScheduler2/worker?name=Zbigniew&surname=Wisniewski");
         delete("/workScheduler2/worker?name=Krzysztof&surname=Pienkowski");
         given().when().delete("/workScheduler2/worker?name=Daniel&surname=Kowalski").then().statusCode(204);
@@ -265,7 +282,7 @@ public class PlanServiceTest {
     public void checkDELETEWorkerQueryParamReturnsEmptyStringWhenThereIsNoWorker() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         delete("/workScheduler2/worker?name=Zbigniew&surname=Wisniewski");
         delete("/workScheduler2/worker?name=Krzysztof&surname=Pienkowski");
         String expectedJson = "";
@@ -314,7 +331,7 @@ public class PlanServiceTest {
     public void checkPUTWorkerReturnsJSONWithWorkers() throws Exception {
         // given
         delete("/workScheduler2/workers");
-        get("/workScheduler2/addInitial");
+        addInitialWorkers();
         Worker worker = new Worker("Mariusz", "Adamski");
         String expectedJson = "[{\"name\":\"Daniel\",\"surname\":\"Kowalski\",\"dayMap\":[]},{\"name\":\"Zbigniew\",\"surname\":\"Wisniewski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":null,\"end\":null}],[\"2017-01-01\",{\"start\":null,\"end\":null}]]},{\"name\":\"Krzysztof\",\"surname\":\"Pienkowski\",\"dayMap\":[[\"2017-01-03\",{\"start\":null,\"end\":null}],[\"2017-01-02\",{\"start\":14,\"end\":22}],[\"2017-01-01\",{\"start\":6,\"end\":14}]]},{\"name\":\"Mariusz\",\"surname\":\"Adamski\",\"dayMap\":[]}]";
         // when
@@ -346,10 +363,8 @@ public class PlanServiceTest {
         LocalDate firstDay = LocalDate.of(2017, 1, 1);
         LocalDate secondDay = LocalDate.of(2017, 1, 2);
         worker.initializeWorkSchedule(firstDay, secondDay);
-        worker.getDayMap().get(firstDay).setStart(6);
-        worker.getDayMap().get(firstDay).setEnd(14);
-        worker.getDayMap().get(secondDay).setStart(14);
-        worker.getDayMap().get(secondDay).setEnd(22);
+        worker.getDayMap().get(firstDay).setDay(6);
+        worker.getDayMap().get(secondDay).setDay(14);
         // when
         given().contentType("application/json").body(worker).when().put("/workScheduler2/worker");
         // then

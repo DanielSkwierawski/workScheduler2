@@ -17,28 +17,6 @@ public class PlanService {
     private Plan plan;
 
     @GET
-    @Path("/addInitial")
-    public Response addInitial() {
-        LocalDate firstDay = LocalDate.of(2017, 1, 1);
-        LocalDate secondDay = LocalDate.of(2017, 1, 2);
-        LocalDate lastDay = LocalDate.of(2017, 1, 3);
-        Worker worker1 = new Worker("Daniel", "Kowalski");
-        Worker worker2 = new Worker("Zbigniew", "Wisniewski");
-        worker2.initializeWorkSchedule(firstDay, lastDay);
-        Worker worker3 = new Worker("Krzysztof", "Pienkowski");
-        worker3.initializeWorkSchedule(firstDay, lastDay);
-        worker3.getDayMap().get(firstDay).setStart(6);
-        worker3.getDayMap().get(firstDay).setEnd(14);
-        worker3.getDayMap().get(secondDay).setStart(14);
-        worker3.getDayMap().get(secondDay).setEnd(22);
-        plan.addWorker(worker1);
-        plan.addWorker(worker2);
-        plan.addWorker(worker3);
-
-        return Response.ok().build();
-    }
-
-    @GET
     @Path("/workers")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllWorkers() {
