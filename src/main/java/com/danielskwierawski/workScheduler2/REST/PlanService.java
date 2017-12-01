@@ -1,6 +1,5 @@
 package com.danielskwierawski.workScheduler2.REST;
 
-import com.danielskwierawski.workScheduler2.model.Day;
 import com.danielskwierawski.workScheduler2.model.Plan;
 import com.danielskwierawski.workScheduler2.model.Worker;
 
@@ -93,7 +92,7 @@ public class PlanService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response addWorker(Worker worker) {
-        for (Worker iterator: plan.getWorkerList()) {
+        for (Worker iterator : plan.getWorkerList()) {
             if (iterator.getName().equals(worker.getName()) && iterator.getSurname().equals(worker.getSurname())) {
                 return Response.status(Response.Status.CONFLICT).build();
             }

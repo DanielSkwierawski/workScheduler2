@@ -5,9 +5,7 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static io.restassured.RestAssured.delete;
-import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlanServiceTest {
