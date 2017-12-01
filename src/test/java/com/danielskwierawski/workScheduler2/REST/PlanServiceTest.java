@@ -34,11 +34,10 @@ public class PlanServiceTest {
     public void checkGETWorkersWhenEmptyReturnsEmptyString() throws Exception {
         // given
         deleteEveryWorker();
-        String expectedJson = "";
         // when
         String json = get("/workScheduler2/workers").asString();
         // then
-        assertThat(json).isEqualTo(expectedJson);
+        assertThat(json).isEmpty();
     }
 
     @Test
@@ -70,11 +69,10 @@ public class PlanServiceTest {
     public void checkGETWorkerPathParamWhenEmptyReturnsEmptyString() throws Exception {
         // given
         deleteEveryWorker();
-        String expectedJson = "";
         // when
         String json = get("/workScheduler2/worker/Daniel.Kowalski").asString();
         // then
-        assertThat(json).isEqualTo(expectedJson);
+        assertThat(json).isEmpty();
     }
 
     @Test
@@ -114,11 +112,10 @@ public class PlanServiceTest {
     public void checkGETWorkerQueryParamWhenEmptyReturnsEmptyString() throws Exception {
         // given
         deleteEveryWorker();
-        String expectedJson = "";
         // when
         String json = get("/workScheduler2/worker?name=Daniel&surname=Kowalski").asString();
         // then
-        assertThat(json).isEqualTo(expectedJson);
+        assertThat(json).isEmpty();
     }
 
     @Test
@@ -168,9 +165,8 @@ public class PlanServiceTest {
         delete("/workScheduler2/workers");
         // then
         given().when().get("/workScheduler2/workers").then().statusCode(204);
-        String expectedJson = "";
         String json = get("/workScheduler2/workers").asString();
-        assertThat(json).isEqualTo(expectedJson);
+        assertThat(json).isEmpty();
     }
 
     @Test
@@ -228,11 +224,10 @@ public class PlanServiceTest {
         addInitialWorkers();
         delete("/workScheduler2/worker/Zbigniew.Wisniewski");
         delete("/workScheduler2/worker/Krzysztof.Pienkowski");
-        String expectedJson = "";
         // when
         String json = delete("/workScheduler2/worker/Daniel.Kowalski").asString();
         // then
-        assertThat(json).isEqualTo(expectedJson);
+        assertThat(json).isEmpty();
     }
 
     @Test
@@ -289,11 +284,10 @@ public class PlanServiceTest {
         addInitialWorkers();
         delete("/workScheduler2/worker?name=Zbigniew&surname=Wisniewski");
         delete("/workScheduler2/worker?name=Krzysztof&surname=Pienkowski");
-        String expectedJson = "";
         // when
         String json = delete("/workScheduler2/worker?name=Daniel&surname=Kowalski").asString();
         // then
-        assertThat(json).isEqualTo(expectedJson);
+        assertThat(json).isEmpty();
     }
 
     @Test
