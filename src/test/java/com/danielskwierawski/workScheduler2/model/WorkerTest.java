@@ -1,4 +1,4 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;

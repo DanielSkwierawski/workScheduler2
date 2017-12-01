@@ -1,4 +1,4 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import static com.danielskwierawski.workScheduler2.Plan.*;
+import static com.danielskwierawski.workScheduler2.model.Plan.*;
 
 @EqualsAndHashCode
 @ToString

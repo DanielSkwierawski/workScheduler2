@@ -1,5 +1,6 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.json;
 
+import com.danielskwierawski.workScheduler2.model.Day;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;

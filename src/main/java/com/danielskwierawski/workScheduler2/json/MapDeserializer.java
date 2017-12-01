@@ -1,4 +1,4 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.json;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

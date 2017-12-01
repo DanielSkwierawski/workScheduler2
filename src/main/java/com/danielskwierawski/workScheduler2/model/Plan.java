@@ -1,13 +1,14 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import javax.ejb.Singleton;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 @EqualsAndHashCode
 public class Plan {
     @Getter
@@ -24,6 +25,10 @@ public class Plan {
         for (Worker worker : workerList) {
             worker.initializeWorkSchedule(start, end);
         }
+    }
+
+    public void removeAllWorkers() {
+        workerList.clear();
     }
 }
 

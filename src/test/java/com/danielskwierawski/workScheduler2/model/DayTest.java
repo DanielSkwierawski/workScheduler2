@@ -1,10 +1,9 @@
-package com.danielskwierawski.workScheduler2;
+package com.danielskwierawski.workScheduler2.model;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-import static com.danielskwierawski.workScheduler2.Plan.*;
+import static com.danielskwierawski.workScheduler2.model.Plan.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 
@@ -171,7 +170,6 @@ public class DayTest {
         // then
         assertThat(jsonStandardWorkingDay).isEqualTo(expectedJsonStandardWorkingDay);
     }
-
 
 
     @Test
