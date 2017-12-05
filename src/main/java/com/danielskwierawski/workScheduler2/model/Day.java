@@ -6,11 +6,20 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
+
 import static com.danielskwierawski.workScheduler2.model.Plan.*;
 
+@NamedQueries({
+        @NamedQuery(query = "SELECT d FROM Day d", name = "com.danielskwierawski.workScheduler2.model.Day.findAll")
+})
+@Entity
+@Table(name = "T_DAY")
 @EqualsAndHashCode
 @ToString
 public class Day {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Getter
     @Setter
