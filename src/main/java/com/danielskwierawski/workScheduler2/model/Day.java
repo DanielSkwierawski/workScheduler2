@@ -11,6 +11,7 @@ import static com.danielskwierawski.workScheduler2.model.Plan.*;
 @EqualsAndHashCode
 @ToString
 public class Day {
+    private Long id;
     @Getter
     @Setter
     private Integer start;
